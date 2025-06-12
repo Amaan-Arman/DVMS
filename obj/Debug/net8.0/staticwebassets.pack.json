@@ -1,0 +1,537 @@
+{
+  "Files": [
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\DVMS.bundle.scp.css",
+      "PackagePath": "staticwebassets\\DVMS.bundle.scp.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\bundles\\apexcharts.bundle.js",
+      "PackagePath": "staticwebassets\\assets\\bundles\\apexcharts.bundle.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\bundles\\c3.bundle.js",
+      "PackagePath": "staticwebassets\\assets\\bundles\\c3.bundle.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\bundles\\counterup.bundle.js",
+      "PackagePath": "staticwebassets\\assets\\bundles\\counterup.bundle.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\bundles\\fullcalendar.bundle.js",
+      "PackagePath": "staticwebassets\\assets\\bundles\\fullcalendar.bundle.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\bundles\\knobjs.bundle.js",
+      "PackagePath": "staticwebassets\\assets\\bundles\\knobjs.bundle.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\bundles\\lib.vendor.bundle.js",
+      "PackagePath": "staticwebassets\\assets\\bundles\\lib.vendor.bundle.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\bundles\\nestable.bundle.js",
+      "PackagePath": "staticwebassets\\assets\\bundles\\nestable.bundle.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\bundles\\summernote.bundle.js",
+      "PackagePath": "staticwebassets\\assets\\bundles\\summernote.bundle.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\bundles\\sweetalert.bundle.js",
+      "PackagePath": "staticwebassets\\assets\\bundles\\sweetalert.bundle.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\css\\main.css",
+      "PackagePath": "staticwebassets\\assets\\css\\main.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\css\\theme1.css",
+      "PackagePath": "staticwebassets\\assets\\css\\theme1.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\gallery\\1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\1.jpg"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\gallery\\10.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\10.jpg"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\gallery\\11.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\11.jpg"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\gallery\\12.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\12.jpg"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\gallery\\2.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\2.jpg"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\gallery\\3.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\3.jpg"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\gallery\\4.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\4.jpg"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\gallery\\5.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\5.jpg"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\gallery\\6.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\6.jpg"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\gallery\\7.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\7.jpg"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\gallery\\8.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\8.jpg"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\gallery\\9.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\9.jpg"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\login.png",
+      "PackagePath": "staticwebassets\\assets\\images\\login.png"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\search.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\search.svg"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\sm\\avatar1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\sm\\avatar1.jpg"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\sm\\avatar2.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\sm\\avatar2.jpg"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\sm\\avatar3.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\sm\\avatar3.jpg"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\sm\\avatar4.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\sm\\avatar4.jpg"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\sm\\avatar5.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\sm\\avatar5.jpg"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\sm\\avatar6.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\sm\\avatar6.jpg"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\themes\\dark.png",
+      "PackagePath": "staticwebassets\\assets\\images\\themes\\dark.png"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\themes\\default.png",
+      "PackagePath": "staticwebassets\\assets\\images\\themes\\default.png"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\themes\\rtl.png",
+      "PackagePath": "staticwebassets\\assets\\images\\themes\\rtl.png"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\user.png",
+      "PackagePath": "staticwebassets\\assets\\images\\user.png"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\xs\\avatar1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\xs\\avatar1.jpg"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\xs\\avatar2.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\xs\\avatar2.jpg"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\xs\\avatar3.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\xs\\avatar3.jpg"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\xs\\avatar4.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\xs\\avatar4.jpg"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\xs\\avatar5.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\xs\\avatar5.jpg"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\xs\\avatar6.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\xs\\avatar6.jpg"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\xs\\avatar7.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\xs\\avatar7.jpg"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\xs\\avatar8.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\xs\\avatar8.jpg"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\xs\\avatar9.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\xs\\avatar9.jpg"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\js\\chart\\knobjs.js",
+      "PackagePath": "staticwebassets\\assets\\js\\chart\\knobjs.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\js\\core.js",
+      "PackagePath": "staticwebassets\\assets\\js\\core.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\js\\form\\dropify.js",
+      "PackagePath": "staticwebassets\\assets\\js\\form\\dropify.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\js\\page\\calendar.js",
+      "PackagePath": "staticwebassets\\assets\\js\\page\\calendar.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\js\\page\\project-index.js",
+      "PackagePath": "staticwebassets\\assets\\js\\page\\project-index.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\js\\page\\sortable-nestable.js",
+      "PackagePath": "staticwebassets\\assets\\js\\page\\sortable-nestable.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\js\\page\\summernote.js",
+      "PackagePath": "staticwebassets\\assets\\js\\page\\summernote.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\js\\page\\sweetalert.js",
+      "PackagePath": "staticwebassets\\assets\\js\\page\\sweetalert.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\plugins\\bootstrap-datepicker\\css\\bootstrap-datepicker3.min.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\bootstrap-datepicker\\css\\bootstrap-datepicker3.min.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\plugins\\bootstrap-datepicker\\js\\bootstrap-datepicker.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\bootstrap-datepicker\\js\\bootstrap-datepicker.min.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\plugins\\bootstrap\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\bootstrap\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\plugins\\charts-c3\\c3.min.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\charts-c3\\c3.min.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\plugins\\dropify\\css\\dropify.min.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\dropify\\css\\dropify.min.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\plugins\\dropify\\js\\dropify.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\dropify\\js\\dropify.min.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\plugins\\fontawesome\\all.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fontawesome\\all.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\plugins\\fontawesome\\alll.min.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fontawesome\\alll.min.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\plugins\\fullcalendar\\fullcalendar.min.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fullcalendar\\fullcalendar.min.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\plugins\\nestable\\jquery-nestable.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\nestable\\jquery-nestable.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\plugins\\summernote\\dist\\font\\summernoted41d.eot",
+      "PackagePath": "staticwebassets\\assets\\plugins\\summernote\\dist\\font\\summernoted41d.eot"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\plugins\\summernote\\dist\\font\\summernotef534.eot",
+      "PackagePath": "staticwebassets\\assets\\plugins\\summernote\\dist\\font\\summernotef534.eot"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\plugins\\summernote\\dist\\font\\summernotef534.ttf",
+      "PackagePath": "staticwebassets\\assets\\plugins\\summernote\\dist\\font\\summernotef534.ttf"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\plugins\\summernote\\dist\\font\\summernotef534.woff",
+      "PackagePath": "staticwebassets\\assets\\plugins\\summernote\\dist\\font\\summernotef534.woff"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\plugins\\summernote\\dist\\summernote.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\summernote\\dist\\summernote.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\plugins\\sweetalert\\sweetalert.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\sweetalert\\sweetalert.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.DVMS.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.DVMS.props",
+      "PackagePath": "build\\DVMS.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.DVMS.props",
+      "PackagePath": "buildMultiTargeting\\DVMS.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.DVMS.props",
+      "PackagePath": "buildTransitive\\DVMS.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

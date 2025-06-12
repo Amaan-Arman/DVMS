@@ -1,0 +1,114 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="page">
+    <partial name="PartialViewHeader" />
+
+    <div class="section-body">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center">
+                <ul class="nav nav-tabs page-header-tab">
+                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#Invite-add">Invite Guest</a></li>
+                    <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#Guest-add">Add Guest</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="section-body mt-3">
+        <div class="container-fluid">
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="Invite-add" role="tabpanel">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Invite Guest</h3>
+                        </div>
+                        <form class="card-body">
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label">Select Guest<span class="text-danger">*</span></label>
+                                <div class="col-md-7">
+                                    <select class="form-control show-tick">
+                                        <option>Select</option>
+                                        <option>High</option>
+                                        <option>Medium</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label">Purpose of visit<span class="text-danger">*</span></label>
+                                <div class="col-md-7">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label">Visite date & time<span class="text-danger">*</span></label>
+                                <div class="col-md-3">
+                                    <input type="date" class="form-control">
+                                </div>
+                                  <div class="col-md-3">
+                                    <input type="time" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label"></label>
+                                <div class="col-md-7">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-outline-secondary">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="Guest-add" role="tabpanel">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Add Guest</h3>
+                        </div>
+                        <form class="card-body">
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label">Full Name <span class="text-danger">*</span></label>
+                                <div class="col-md-7">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label">Email<span class="text-danger">*</span></label>
+                                <div class="col-md-7">
+                                    <input type="email" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label">Phone<span class="text-danger">*</span></label>
+                                <div class="col-md-7">
+                                    <input type="number" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label">CNIC<span class="text-danger">*</span></label>
+                                <div class="col-md-7">
+                                    <input type="number" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label"></label>
+                                <div class="col-md-7">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-outline-secondary">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-body">
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
