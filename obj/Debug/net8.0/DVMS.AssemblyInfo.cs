@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DVMS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f8eff8148642e1b6fa896854720cf0e06274b949")]
 [assembly: System.Reflection.AssemblyProductAttribute("DVMS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DVMS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

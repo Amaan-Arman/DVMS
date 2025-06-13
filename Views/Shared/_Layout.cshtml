@@ -20,13 +20,13 @@
     <link rel="stylesheet" href="~/assets/css/main.css" />
     <link rel="stylesheet" href="~/assets/css/theme1.css" />
 
-@*  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/DVMS.styles.css" asp-append-version="true" /> *@
+    <link href="~/assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
 </head>
 
 
-<body class="font-montserrat">
+<body class="font-montserrat" ng-app="Homeapp">
     <!-- Page Loader -->
     <div class="page-loader-wrapper">
         <div class="loader">
@@ -324,10 +324,10 @@
     <script src="~/assets/js/core.js"></script>
     <script src="~/assets/js/page/project-index.js"></script>
     
-   @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false) *@
+   <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @* <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> *@
+    @* <script src="~/js/site.js" asp-append-version="true"></script> *@
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>

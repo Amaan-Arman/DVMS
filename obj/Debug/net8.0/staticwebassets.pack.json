@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\DVMS.bundle.scp.css"
     },
     {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\ContollerScript\\InspectionController.js",
+      "PackagePath": "staticwebassets\\ContollerScript\\InspectionController.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\ContollerScript\\QRScannerController.js",
+      "PackagePath": "staticwebassets\\ContollerScript\\QRScannerController.js"
+    },
+    {
       "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\bundles\\apexcharts.bundle.js",
       "PackagePath": "staticwebassets\\assets\\bundles\\apexcharts.bundle.js"
     },
@@ -287,6 +295,18 @@
     {
       "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\angularJS\\angular.min.js",
+      "PackagePath": "staticwebassets\\lib\\angularJS\\angular.min.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\angularJS\\scanner.js",
+      "PackagePath": "staticwebassets\\lib\\angularJS\\scanner.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\angularJS\\signalRService.js",
+      "PackagePath": "staticwebassets\\lib\\angularJS\\signalRService.js"
     },
     {
       "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\lib\\bootstrap\\LICENSE",

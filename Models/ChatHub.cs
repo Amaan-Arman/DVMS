@@ -1,34 +1,33 @@
-﻿//using Microsoft.AspNet.SignalR;
-//using System;
-//using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.SignalR;
+using System.Threading.Tasks;
 
-//namespace DVMS
-//{
-//    public class ChatHub : Hub
-//    {
-//        public void SendMessage(string userId, string user_name, string message, string type)
-//        {
-//            Clients.Others.broadcastMessage(userId, user_name, message, type);
-//        }
-//        public override Task OnConnected()
-//        {
-//            string userId = Context.QueryString["userId"];
-//            if (!string.IsNullOrEmpty(userId))
-//            {
-//                // Associate the userId with the connectionId
-//                Groups.Add(Context.ConnectionId, userId);
-//            }
-//            return base.OnConnected();
-//        }
+namespace WebApplication1.Hubs
+{
+    public class ChatHub : Hub
+    {
+        public async Task SendMessage(string userId, string user_name, string message, string type)
+        {
+            await Clients.Others.SendAsync("broadcastMessage", userId, user_name, message, type);
+        }
 
-//        public override Task OnDisconnected(bool stopCalled)
-//        {
-//            string userId = Context.QueryString["userId"];
-//            if (!string.IsNullOrEmpty(userId))
-//            {
-//                Groups.Remove(Context.ConnectionId, userId);
-//            }
-//            return base.OnDisconnected(stopCalled);
-//        }
-//    }
-//}
+        public override async Task OnConnectedAsync()
+        {
+            string? userId = Context.GetHttpContext()?.Request.Query["userId"];
+            if (!string.IsNullOrEmpty(userId))
+            {
+                await Groups.AddToGroupAsync(Context.ConnectionId, userId);
+            }
+            await base.OnConnectedAsync();
+        }
+
+        public override async Task OnDisconnectedAsync(Exception exception)
+        {
+            string? userId = Context.GetHttpContext()?.Request.Query["userId"];
+            if (!string.IsNullOrEmpty(userId))
+            {
+                await Groups.RemoveFromGroupAsync(Context.ConnectionId, userId);
+            }
+            await base.OnDisconnectedAsync(exception);
+        }
+    }
+}

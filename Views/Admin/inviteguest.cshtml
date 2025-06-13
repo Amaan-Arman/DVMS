@@ -1,7 +1,8 @@
+@model DVMS.Models.Admin
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Invite Guest";
 }
-<div class="page">
+<div class="page" ng-controller="GuestContrller">
     <partial name="PartialViewHeader" />
 
     <div class="section-body">
@@ -36,23 +37,23 @@
                             <div class="form-group row">
                                 <label class="col-md-3 col-form-label">Purpose of visit<span class="text-danger">*</span></label>
                                 <div class="col-md-7">
-                                    <input type="text" class="form-control">
+                                    @Html.TextBoxFor(model => model.VisitPurpose, new { @class = "form-control", @placeholder = "User ID", id = "login_id", @autocomplete = "off" })
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-3 col-form-label">Visite date & time<span class="text-danger">*</span></label>
                                 <div class="col-md-3">
-                                    <input type="date" class="form-control">
+                                    <input type="date" id="Date" class="form-control">
                                 </div>
                                   <div class="col-md-3">
-                                    <input type="time" class="form-control">
+                                    <input type="time" id="Time" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-3 col-form-label"></label>
                                 <div class="col-md-7">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                    <button type="submit" class="btn btn-outline-secondary">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Send</button>
+                                    @* <button type="submit" class="btn btn-outline-secondary">Cancel</button> *@
                                 </div>
                             </div>
                         </form>
@@ -67,32 +68,32 @@
                             <div class="form-group row">
                                 <label class="col-md-3 col-form-label">Full Name <span class="text-danger">*</span></label>
                                 <div class="col-md-7">
-                                    <input type="text" class="form-control">
+                                    @Html.TextBoxFor(model => model.GuestFullName, new { @class = "form-control", @placeholder = "Full Name", id = "GuestFullName", @autocomplete = "off" })
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-3 col-form-label">Email<span class="text-danger">*</span></label>
                                 <div class="col-md-7">
-                                    <input type="email" class="form-control">
+                                    @Html.TextBoxFor(model => model.GuestEmail, new { @class = "form-control", @placeholder = "Email ", id = "GuestEmail", @autocomplete = "off" })
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-3 col-form-label">Phone<span class="text-danger">*</span></label>
                                 <div class="col-md-7">
-                                    <input type="number" class="form-control">
+                                    @Html.TextBoxFor(model => model.GuestPhone, new { @class = "form-control", @placeholder = "Phone ", id = "GuestPhone", @autocomplete = "off" })
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-3 col-form-label">CNIC<span class="text-danger">*</span></label>
                                 <div class="col-md-7">
-                                    <input type="number" class="form-control">
+                                    @Html.TextBoxFor(model => model.GuestCNIC, new { @class = "form-control", @placeholder = "**************", id = "GuestCNIC", @autocomplete = "off" })
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-3 col-form-label"></label>
                                 <div class="col-md-7">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                    <button type="submit" class="btn btn-outline-secondary">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                    @* <button type="submit" class="btn btn-outline-secondary">Cancel</button> *@
                                 </div>
                             </div>
                         </form>
@@ -112,3 +113,5 @@
         </footer>
     </div>
 </div>
+<script src="~/lib/angularjs/angular.min.js"></script>
+<script src="~/contollerscript/guestcontrller.js"></script>

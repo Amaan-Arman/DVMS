@@ -28,3 +28,4 @@ G:\Support data\Amaan\Digital Visitor MS\DVMS\obj\Debug\net8.0\refint\DVMS.dll
 G:\Support data\Amaan\Digital Visitor MS\DVMS\obj\Debug\net8.0\DVMS.pdb
 G:\Support data\Amaan\Digital Visitor MS\DVMS\obj\Debug\net8.0\DVMS.genruntimeconfig.cache
 G:\Support data\Amaan\Digital Visitor MS\DVMS\obj\Debug\net8.0\ref\DVMS.dll
+G:\Support data\Amaan\Digital Visitor MS\DVMS\obj\Debug\net8.0\DVMS.sourcelink.json
