@@ -52,6 +52,14 @@
             "Microsoft.Data.SqlClient": {
               "target": "Package",
               "version": "[6.0.2, )"
+            },
+            "QRCoder.Core": {
+              "target": "Package",
+              "version": "[1.0.3, )"
+            },
+            "SixLabors.ImageSharp": {
+              "target": "Package",
+              "version": "[3.1.10, )"
             }
           },
           "imports": [

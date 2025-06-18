@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
 
-namespace WebApplication1.Hubs
+namespace DVMS.Hubs
 {
     public class ChatHub : Hub
     {

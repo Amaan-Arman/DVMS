@@ -6,6 +6,7 @@ using System.Data;
 using System.Text;
 using System.Net;
 using DVMS.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
 namespace DVMS.Models
@@ -17,7 +18,7 @@ namespace DVMS.Models
         // Inject IConfiguration to access connection string
         public CrudClass(IConfiguration configuration)
         {
-            _connectionString = configuration.GetConnectionString("DefaultConnection");
+            _connectionString = configuration.GetConnectionString("DVMSConnection");
         }
 
         public string InsertionMethodStatus(string status, string Field, string Values)
@@ -121,79 +122,6 @@ namespace DVMS.Models
         //                    }
         //                    rdr.Close();
         //                }
-        //                if (status.Equals("GetServicePost"))
-        //                {
-        //                    while (rdr.Read())
-        //                    {
-        //                        Home p = new Home();
-        //                        p.ID = ToInt32(rdr[0].ToString()); //(int) rdr[0];
-        //                        p.userID = ToInt32(rdr[1].ToString()); //(int) rdr[0];
-        //                        p.title = ToString(rdr[2].ToString());
-        //                        p.description = ToString(rdr[3].ToString());
-        //                        p.CustomPrice = ToString(rdr[4].ToString());
-        //                        p.featuredImg = ToString(rdr[5].ToString());
-        //                        p.date = rdr[6].ToString();
-        //                        lst.Add(p);
-        //                    }
-        //                    rdr.Close();
-        //                }
-        //                if (status.Equals("GetPostDetailList"))
-        //                {
-        //                    while (rdr.Read())
-        //                    {
-        //                        Home p = new Home();
-        //                        p.ID = ToInt32(rdr[0].ToString()); //(int) rdr[0];
-        //                        p.userID = ToInt32(rdr[1].ToString()); //(int) rdr[0];
-        //                        p.UserImg = ToString(rdr[2].ToString());
-        //                        p.Name = ToString(rdr[3].ToString());
-        //                        p.tagline = ToString(rdr[4].ToString());
-        //                        p.aboutme = ToString(rdr[5].ToString());
-        //                        p.title = ToString(rdr[6].ToString());
-        //                        p.description = ToString(rdr[7].ToString());
-        //                        p.CustomPrice = ToString(rdr[8].ToString());
-        //                        p.featuredImg = ToString(rdr[9].ToString());
-        //                        p.date = rdr[10].ToString();
-        //                        lst.Add(p);
-        //                    }
-        //                    rdr.Close();
-        //                }
-        //                if (status.Equals("OfferList"))
-        //                {
-        //                    while (rdr.Read())
-        //                    {
-        //                        Home p = new Home();
-        //                        p.ID = ToInt32(rdr[0].ToString()); //(int) rdr[0];
-        //                        p.userID = ToInt32(rdr[1].ToString()); //(int) rdr[0];
-        //                        p.UserImg = FirstCharToUpper(ToString(rdr[2].ToString()).ToLower());
-        //                        p.Name = FirstCharToUpper(ToString(rdr[3].ToString()).ToLower());
-        //                        p.ServiceID = ToInt32(rdr[4].ToString());
-        //                        p.ServiceName = FirstCharToUpper(ToString(rdr[5].ToString()).ToLower());
-        //                        p.latitude = rdr[6].ToString();
-        //                        p.longitude = rdr[7].ToString();
-        //                        p.requestDate = rdr[8].ToString();
-        //                        p.offerprice = rdr[9].ToString();
-        //                        lst.Add(p);
-        //                    }
-        //                    rdr.Close();
-        //                }
-        //                if (status.Equals("TrackPostRequests"))
-        //                {
-        //                    while (rdr.Read())
-        //                    {
-        //                        Home p = new Home();
-        //                        p.bookingID = ToInt32(rdr[0].ToString());
-        //                        p.UserImg = rdr[1].ToString();
-        //                        p.userID = ToInt32(rdr[2].ToString());
-        //                        p.Name = FirstCharToUpper(ToString(rdr[3].ToString()).ToLower());
-        //                        p.ServiceName = FirstCharToUpper(ToString(rdr[4].ToString()).ToLower());
-        //                        p.dateofbooking = rdr[5].ToString();
-        //                        p.address = rdr[6].ToString();
-        //                        p.date = rdr[7].ToString();
-        //                        p.Status = rdr[8].ToString();
-        //                        lst.Add(p);
-        //                    }
-        //                    rdr.Close();
-        //                }
 
         //                con.Close();
         //            }
@@ -206,166 +134,85 @@ namespace DVMS.Models
         //    }
         //}
 
-        //public List<Home> SelectAdmin(string status, string id, string start_date, string end_date, string datetime)
-        //{
-        //    try
-        //    {
-        //        List<Home> lst = new List<Home>();
-        //        using (SqlConnection con = new SqlConnection(_connectionString))
-        //        {
-        //            using (SqlCommand cmd = new SqlCommand("SpSelection", con))
-        //            {
-        //                cmd.CommandType = CommandType.StoredProcedure;
-        //                cmd.Parameters.AddWithValue("@status", status.ToString().Trim());
-        //                cmd.Parameters.AddWithValue("@id", id.ToString().Trim());
-        //                cmd.Parameters.AddWithValue("@start_date", start_date.ToString().Trim());
-        //                cmd.Parameters.AddWithValue("@end_date", end_date.ToString().Trim());
-        //                cmd.Parameters.AddWithValue("@datetime", datetime.ToString().Trim());
-        //                con.Open();
-        //                SqlDataReader rdr = cmd.ExecuteReader();
+        public List<Admin> SelectAdmin(string status, string id, string start_date, string end_date, string datetime)
+        {
+            try
+            {
+                List<Admin> lst = new List<Admin>();
+                using (SqlConnection con = new SqlConnection(_connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("SpSelection", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@status", status.ToString().Trim());
+                        cmd.Parameters.AddWithValue("@id", id.ToString().Trim());
+                        cmd.Parameters.AddWithValue("@start_date", start_date.ToString().Trim());
+                        cmd.Parameters.AddWithValue("@end_date", end_date.ToString().Trim());
+                        cmd.Parameters.AddWithValue("@datetime", datetime.ToString().Trim());
+                        con.Open();
+                        SqlDataReader rdr = cmd.ExecuteReader();
 
 
-        //                if (status.Equals("RequestList"))
-        //                {
-        //                    while (rdr.Read())
-        //                    {
-        //                        Home p = new Home();
-        //                        p.ID = ToInt32(rdr[0].ToString()); //(int) rdr[0];
-        //                        p.userID = ToInt32(rdr[1].ToString()); //(int) rdr[0];
-        //                        p.UserImg = FirstCharToUpper(ToString(rdr[2].ToString()).ToLower());
-        //                        p.Name = FirstCharToUpper(ToString(rdr[3].ToString()).ToLower());
-        //                        p.ServiceID = ToInt32(rdr[4].ToString());
-        //                        p.ServiceName = FirstCharToUpper(ToString(rdr[5].ToString()).ToLower());
-        //                        p.latitude = rdr[6].ToString();
-        //                        p.longitude = rdr[7].ToString();
-        //                        p.date = rdr[8].ToString();
-        //                        p.time = rdr[9].ToString();
-        //                        lst.Add(p);
-        //                    }
-        //                    rdr.Close();
-        //                }
-        //                if (status.Equals("GetPostRequests"))
-        //                {
-        //                    while (rdr.Read())
-        //                    {
-        //                        Home p = new Home();
-        //                        p.bookingID = ToInt32(rdr[0].ToString());
-        //                        p.UserImg = rdr[1].ToString();
-        //                        p.userID = ToInt32(rdr[2].ToString());
-        //                        p.Name = FirstCharToUpper(ToString(rdr[3].ToString()).ToLower());
-        //                        p.ServiceName = FirstCharToUpper(ToString(rdr[4].ToString()).ToLower());
-        //                        p.dateofbooking = rdr[5].ToString();
-        //                        p.address = rdr[6].ToString();
-        //                        p.date = rdr[7].ToString();
-        //                        p.Status = rdr[8].ToString();
-        //                        lst.Add(p);
-        //                    }
-        //                    rdr.Close();
-        //                }
-        //                if (status.Equals("GetAcceptPost"))
-        //                {
-        //                    while (rdr.Read())
-        //                    {
-        //                        Home p = new Home();
-        //                        p.bookingID = ToInt32(rdr[0].ToString());
-        //                        p.UserImg = rdr[1].ToString();
-        //                        p.userID = ToInt32(rdr[2].ToString());
-        //                        p.Name = FirstCharToUpper(ToString(rdr[3].ToString()).ToLower());
-        //                        p.ServiceName = FirstCharToUpper(ToString(rdr[4].ToString()).ToLower());
-        //                        p.dateofbooking = rdr[5].ToString();
-        //                        p.address = rdr[6].ToString();
-        //                        p.date = rdr[7].ToString();
-        //                        p.Status = rdr[8].ToString();
-        //                        lst.Add(p);
-        //                    }
-        //                    rdr.Close();
-        //                }
+                        if (status.Equals("ValidateInvitation"))
+                        {
+                            while (rdr.Read())
+                            {
+                                Admin p = new Admin();
+                                p.Status = ToString(rdr[0].ToString()); 
+                                p.InvitationId = ToInt32(rdr[1].ToString());
 
-        //                if (status.Equals("userserviceList"))
-        //                {
-        //                    while (rdr.Read())
-        //                    {
-        //                        Home p = new Home();
-        //                        p.ServiceID = ToInt32(rdr[0].ToString()); //(int) rdr[0];
-        //                        p.ServiceName = ToString(rdr[1].ToString()).ToLower();
-        //                        lst.Add(p);
-        //                    }
-        //                    rdr.Close();
-        //                }
-        //                if (status.Equals("serviceList"))
-        //                {
-        //                    while (rdr.Read())
-        //                    {
-        //                        Home p = new Home();
-        //                        p.ServiceID = ToInt32(rdr[0].ToString()); //(int) rdr[0];
-        //                        p.ServiceName = ToString(rdr[1].ToString()).ToLower();
-        //                        lst.Add(p);
-        //                    }
-        //                    rdr.Close();
-        //                }
-        //                if (status.Equals("GetServicePostadmin"))
-        //                {
-        //                    while (rdr.Read())
-        //                    {
-        //                        Home p = new Home();
-        //                        p.ID = ToInt32(rdr[0].ToString()); //(int) rdr[0];
-        //                        p.title = ToString(rdr[1].ToString());
-        //                        p.description = ToString(rdr[2].ToString());
-        //                        p.CustomPrice = ToString(rdr[3].ToString());
-        //                        p.featuredImg = ToString(rdr[4].ToString());
-        //                        p.date = rdr[5].ToString();
-        //                        lst.Add(p);
-        //                    }
-        //                    rdr.Close();
-        //                }
+                                lst.Add(p);
+                            }
+                            rdr.Close();
+                        }
 
-        //                if (status.Equals("HistoryList"))
-        //                {
-        //                    while (rdr.Read())
-        //                    {
-        //                        Home p = new Home();
-        //                        p.ID = ToInt32(rdr[0].ToString()); //(int) rdr[0];
-        //                        p.userID = ToInt32(rdr[1].ToString()); //(int) rdr[0];
-        //                        p.UserImg = FirstCharToUpper(ToString(rdr[2].ToString()).ToLower());
-        //                        p.Name = FirstCharToUpper(ToString(rdr[3].ToString()).ToLower());
-        //                        p.ServiceID = ToInt32(rdr[4].ToString());
-        //                        p.ServiceName = FirstCharToUpper(ToString(rdr[5].ToString()).ToLower());
-        //                        p.latitude = rdr[6].ToString();
-        //                        p.longitude = rdr[7].ToString();
-        //                        p.requestDate = rdr[8].ToString();
-        //                        p.CustomPrice = rdr[9].ToString();
-        //                        p.Status = rdr[10].ToString();
-        //                        lst.Add(p);
-        //                    }
-        //                    rdr.Close();
-        //                }
-        //                if (status.Equals("GetEarning"))
-        //                {
-        //                    while (rdr.Read())
-        //                    {
-        //                        Home p = new Home();
-        //                        p.todayEarning = rdr[0].ToString();
-        //                        p.yesterdayEarning = rdr[1].ToString();
-        //                        p.weeklyEarning = rdr[2].ToString();
-        //                        p.monthlyEarning = rdr[3].ToString();
-        //                        lst.Add(p);
-        //                    }
-        //                    rdr.Close();
-        //                }
-        //                con.Close();
-        //            }
-        //        }
-        //        return lst;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception("Error in SelectHome: " + ex.Message);
-        //    }
-        //}
+                        if (status.Equals("GetGuestList"))
+                        {
+                            while (rdr.Read())
+                            {
+                                Admin p = new Admin();
+                                p.GuestId = ToInt32(rdr[0].ToString()); //(int) rdr[0];
+                                p.GuestFullName = ToString(rdr[1].ToString());
+                                p.GuestEmail = ToString(rdr[2].ToString()); 
+                                p.GuestPhone = ToString(rdr[3].ToString());
+                                p.GuestCNIC =ToString(rdr[4].ToString());
+                                p.Date = ToString(rdr[5].ToString());
+                              
+                                lst.Add(p);
+                            }
+                            rdr.Close();
+                        }
 
+                        if (status.Equals("GetGuestListID"))
+                        {
+                            while (rdr.Read())
+                            {
+                                Admin p = new Admin();
+                                p.GuestId = ToInt32(rdr[0].ToString());
+                                p.GuestFullName = ToString(rdr[1].ToString());
+
+                                lst.Add(p);
+                            }
+                            rdr.Close();
+                        }
+
+                        con.Close();
+                    }
+                }
+                return lst;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in SelectHome: " + ex.Message);
+            }
+        }
+
+
+        //Login System
         public string LoginVerification(string status, string LoginID, string Password)
         {
             string checker = "";
+          
             try
             {
 
@@ -379,6 +226,8 @@ namespace DVMS.Models
                         cmd.Parameters.AddWithValue("@Password", Password.Trim().ToString());
                         con.Open();
                         SqlDataReader rdr = cmd.ExecuteReader();
+
+                    
 
                         if (status.Equals("ForgetPasswordVerification"))
                         {
@@ -513,8 +362,6 @@ namespace DVMS.Models
                                 p.user_img = ToString(rdr[2].ToString());
                                 p.Email = rdr[3].ToString();
                                 p.user_mobileNo = rdr[4].ToString();
-                                p.tagline = ToString(rdr[5].ToString());
-                                p.aboutme = ToString(rdr[6].ToString());
                                 p.address = ToString(rdr[7].ToString());
                                 p.city = ToString(rdr[8].ToString());
                                 p.country = ToString(rdr[9].ToString());
@@ -533,8 +380,8 @@ namespace DVMS.Models
                                 p.Email = rdr[3].ToString();
                                 p.user_mobileNo = rdr[4].ToString();
                                 p.city = ToString(rdr[5].ToString());
-                                p.cnic_f = ToString(rdr[6].ToString());
-                                p.cnic_b = ToString(rdr[7].ToString());
+                                p.cnic_front = ToString(rdr[6].ToString());
+                                p.cnic_back = ToString(rdr[7].ToString());
                                 p.date = ToString(rdr[8].ToString());
                                 p.time = ToString(rdr[9].ToString());
                                 p.active = ToString(rdr[10].ToString());
@@ -553,8 +400,8 @@ namespace DVMS.Models
                                 p.Email = rdr[3].ToString();
                                 p.user_mobileNo = rdr[4].ToString();
                                 p.city = ToString(rdr[5].ToString());
-                                p.cnic_f = ToString(rdr[6].ToString());
-                                p.cnic_b = ToString(rdr[7].ToString());
+                                p.cnic_front = ToString(rdr[6].ToString());
+                                p.cnic_back = ToString(rdr[7].ToString());
                                 p.date = ToString(rdr[8].ToString());
                                 p.time = ToString(rdr[9].ToString());
                                 p.active = ToString(rdr[10].ToString());
@@ -563,25 +410,6 @@ namespace DVMS.Models
                             rdr.Close();
                         }
 
-                        //if (status.Equals("GetRightList"))
-                        //{
-                        //    while (rdr.Read())
-                        //    {
-                        //        login bo = new login();
-                        //        bo.user_credential_id = ToInt32(rdr[0].ToString().Trim());
-                        //        bo.user_name = FirstCharToUpper(ToString(rdr[1].ToString().Trim()).ToLower());
-                        //        bo.module_id = ToInt32(rdr[2].ToString().Trim());
-                        //        bo.module_name = ToString(rdr[3].ToString().Trim()).ToLower();
-                        //        bo.can_read = ToInt32(rdr[4].ToString().Trim());
-                        //        bo.can_create = ToInt32(rdr[5].ToString().Trim());
-                        //        bo.can_delete = ToInt32(rdr[6].ToString().Trim());
-                        //        bo.can_update = ToInt32(rdr[7].ToString().Trim());
-                        //        bo.can_print = ToInt32(rdr[8].ToString().Trim());
-                        //        bo.can_report = ToInt32(rdr[9].ToString().Trim());
-                        //        lst.Add(bo);
-                        //    }
-                        //    rdr.Close();
-                        //}
                         cmd.ExecuteNonQuery();
                         con.Close();
                     }
@@ -644,7 +472,7 @@ namespace DVMS.Models
         public int RandomNumber(int min, int max)
         {
             Random generator = new Random();
-            String r = generator.Next(min, max).ToString("D6");
+            System.String r = generator.Next(min, max).ToString("D6");
             return ToInt32(r);
         }
         public string Generatepassword()
@@ -750,7 +578,7 @@ namespace DVMS.Models
             return (int)Convert.ToDouble(value);
 
         }
-        public Boolean ToBoolean(string value)
+        public System.Boolean ToBoolean(string value)
         {
 
             if (value == null)

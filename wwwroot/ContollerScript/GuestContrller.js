@@ -2,301 +2,181 @@
 app.controller('GuestContrller', function ($scope, $http) {
 
     localStorage.setItem('URLIndex', '/Admin/')
+    function showMessage(msg) {
+        swal(msg);
+    }
+    function showError(errorCode) {
+        switch (errorCode) {
+            case "DataBaseError":
+                showWithTitleMessage("<strong>Database Connectivity Error</strong>, Please check the application database connection...");
+                break;
+            case "NetworkError":
+                showWithTitleMessage("<strong>Internet Connectivity Error</strong>, Please check the Internet connection...");
+                break;
+            case "ExceptionError":
+                showWithTitleMessage("<strong>Exception Error</strong>, Please Check the Error Log...");
+                break;
+            default:
+                showWithTitleMessage(errorCode);
+                break;
+        }
+    }
 
-    $scope.Registerblock = false;
-    $scope.OTPblock = true;
-
-    if (localStorage.getItem('FromSubmit') == "True") {
-        $scope.$applyAsync(() => {
-            $scope.StepOne = true;
-            $scope.StepTwo = true;
-            $scope.Stepthree = false;
+    $http.get(localStorage.getItem('URLIndex') + 'GetGuestList').then(function (i) {
+        debugger
+        $scope.GetGuestList = i.data;
+    },
+    function (error) {
+        alert(error);
+        $scope.GetGuestList = error;
         });
-    } else {
-        $scope.$applyAsync(() => {
-            $scope.StepOne = false;
-            $scope.StepTwo = true;
-            $scope.Stepthree = true;
+
+    $scope.SetGusetFunction = function () {
+        debugger
+        var GuestFullNameID = $("#GuestFullName").val();
+        var GuestEmailID = $("#GuestEmail").val();
+        var GuestPhoneID = $("#GuestPhone").val();
+        var GuestCNICID = $("#GuestCNIC").val();
+
+        if (!GuestFullNameID) {
+            showMessage("Name is required.");
+            return;
+        } else if (!GuestEmailID) {
+            showMessage("Email is required.");
+            return;
+        } else if (!GuestPhoneID) {
+            showMessage("Phone is required.");
+            return;
+        } else if (!GuestCNICID) {
+            showMessage("CNIC is required.");
+            return;
+        }
+        $('.page-loader-wrapper').fadeIn();
+        var data = {
+            GuestFullName: GuestFullNameID,
+            GuestEmail: GuestEmailID,
+            GuestPhone: GuestPhoneID,
+            GuestCNIC: GuestCNICID
+        };
+        $.ajax({
+            type: "POST",
+            url: localStorage.getItem('URLIndex') + 'SetGuset',
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            success: function (result) {
+                if (result === "Saved") {
+                    $('.page-loader-wrapper').fadeOut();
+                    $("#GuestFullName").get(0).value = "";
+                    $("#GuestEmail").get(0).value = "";
+                    $("#GuestPhone").get(0).value = "";
+                    $("#GuestCNIC").get(0).value = "";
+
+                    $http.get(localStorage.getItem('URLIndex') + 'GetGuestList').then(function (i) {
+                        debugger
+                        $scope.GetGuestList = i.data;
+                    },
+                        function (error) {
+                            alert(error);
+                            $scope.GetGuestList = error;
+                        });
+                } else {
+                    $('.page-loader-wrapper').fadeOut();
+                    showError(result);
+                }
+            },
+            error: function (xhr) {
+                $('.page-loader-wrapper').fadeOut();
+                alert('Error - ' + xhr.status + ': ' + xhr.statusText);
+            }
         });
-    }
+    };
+ 
+    $scope.SetGusetInvitationFunction = function () {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Do you want to send the invitation?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes "
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $('.page-loader-wrapper').fadeIn();
+                debugger
 
-    $scope.LoginFunction = function (formId) {
-        //$(".imageLoadinng").show();
-        debugger
-        var login_id = $("#login_id").val();
-        var Password_id = $("#Password_id").val();
+                var Guest_ID = $("#Guest_Id").val();
+                var VisitPurpose_ID = $("#VisitPurposeID").val();
+                var invite_Date = $("#inviteDate").val();
+                var invite_Time = $("#inviteTime").val();
 
-        if (login_id == "") {
-            $("#login_id_errormessage").html("Login id is a Mandatory Requirement, Please Put it..");
-            $("#login_id").css({ "border-color": "#fb7c72", "border-weight": "5px", "border-style": "solid" });
-            $(".imageLoadinng").hide();
-        }
-        else if (Password_id == "") {
-            $("#Password_id_errormessage").html("Password is a Mandatory Requirement, Please Put it..");
-            $("#Password_id").css({ "border-color": "#fb7c72", "border-weight": "5px", "border-style": "solid" });
-            $(".imageLoadinng").hide();
-        }
-        else {
-            var data = $(formId).serialize();
-
-            $.ajax({
-                type: "POST",
-                url: localStorage.getItem('URLIndex') + 'LoginAndPassword',
-                data: data,
-                success: function (result) {
-                    debugger
-                    //$(".imageLoadinng").hide();
-                    if (result == "Invalid Login Id") {
-                        $("#login_id_errormessage").html("Invalid Login Id");
-                        $("#login_id").css({ "border-color": "#fb7c72", "border-weight": "5px", "border-style": "solid" });
-                    }
-                    else if (result == "Invalid Password Id") {
-                        $("#Password_id_errormessage").html("Invalid Password");
-                        $("#Password_id").css({ "border-color": "#fb7c72", "border-weight": "5px", "border-style": "solid" });
-                    }
-                    else if (result == "SuperAdmin" || result == "Seller") {
-                         window.location.href = "/Admin/"
-                    }
-                    else if (result == "User") {
-                         window.location.href = "/Home/"
-                    }
-                    else {
-                        alert("this error" + result);
-                    }
-                },
-                error: function (xhr, status, error) {
-                    //$(".imageLoadinng").hide();
-                    var errorMessage = xhr.status + ': ' + xhr.statusText
-                    alert('Error - ' + errorMessage);
+                if (!Guest_ID) {
+                    showMessage("Guest Name is required.");
+                    $('.page-loader-wrapper').fadeOut();
+                    return;
+                } else if (!VisitPurpose_ID) {
+                    $('.page-loader-wrapper').fadeOut();
+                    showMessage("Visit Purpose_ID is required.");
+                    return;
                 }
-            })
-        }
-    }
-
-    $scope.RegistrationFunction = function () {
-        var Name_id = $("#user_name_id").val();
-        var email_id = $("#Email_id").val();
-        var Password_id = $("#Password_id").val();
-
-        if (Name_id == "") {
-            $("#Name_id_errormessage").html("Login id is a Mandatory Requirement, Please Put it..");
-            $("#user_name_id").css({ "border-color": "#fb7c72", "border-weight": "5px", "border-style": "solid" });
-        }
-        else if (email_id == "") {
-            $("#Email_id_errormessage").html("Password is a Mandatory Requirement, Please Put it..");
-            $("#Email_id").css({ "border-color": "#fb7c72", "border-weight": "5px", "border-style": "solid" });
-        }
-        else if (Password_id == "") {
-            $("#Password_id_errormessage").html("Password is a Mandatory Requirement, Please Put it..");
-            $("#Password_id").css({ "border-color": "#fb7c72", "border-weight": "5px", "border-style": "solid" });
-        }
-        else {
-            localStorage.setItem('Name_id', Name_id);
-            localStorage.setItem('email_id', email_id);
-            localStorage.setItem('Password_id', Password_id);
-            var data = new FormData;
-            data.append("Email", email_id);
-            $.ajax({
-                type: "POST",
-                url: localStorage.getItem('URLIndex') + 'SetUser',
-                data: data,
-                contentType: false,
-                processData: false,
-                success: function (result) {
-                    if (result == "EmailAlreadyExist") {
-                        $("#Email_id_errormessage").html("Email Already Exist");
-                    }
-                    else if (result == "Saved") {
-                        $scope.$applyAsync(() => {
-                            $scope.Registerblock = true;
-                            $scope.OTPblock = false;
-                        });
-                    }
-                },
-                error: function (xhr, status, error) {
-                    var errorMessage = xhr.status + ': ' + xhr.statusText
-                    alert('Error - ' + errorMessage);
+                else if (!invite_Date) {
+                    $('.page-loader-wrapper').fadeOut();
+                    showMessage("Date is required.");
+                    return;
+                } 
+                else if (!invite_Time) {
+                    $('.page-loader-wrapper').fadeOut();
+                    showMessage("Time is required.");
+                    return;
                 }
-            })
-        }
-    }
-    $scope.OTPFunction = function () {
-        debugger
-        var OPT_id = $("#otp_id").val();
-        var Name_id = localStorage.getItem('Name_id');
-        var email_id = localStorage.getItem('email_id');
-        var Password_id = localStorage.getItem('Password_id');
-        if (OPT_id == "") {
-            $("#otp_num_id_errormessage").html("OPT is a Mandatory Requirement, Please Put it..");
-            $("#otp_id").css({ "border-color": "#fb7c72", "border-weight": "5px", "border-style": "solid" });
-        }
-        else {
-            var data = new FormData;
-            data.append("otp_num", OPT_id);
-            data.append("user_name", Name_id);
-            data.append("Email", email_id);
-            data.append("Password", Password_id);
-            $.ajax({
-                type: "POST",
-                url: localStorage.getItem('URLIndex') + 'OPTVerify',
-                data: data,
-                contentType: false,
-                processData: false,
-                success: function (result) {
-                    debugger
-                    if (result == "Invalid Otp Id") {
-                        $("#login_id_errormessage").html("Invalid Otp");
-                        $("#login_id").css({ "border-color": "#fb7c72", "border-weight": "5px", "border-style": "solid" });
-                    }
-                    else if (result == "Admin") {
-                        window.location.href = "/Admin/"
-                    }
-                    else if (result == "User") {
-                        window.location.href = "/Home/"
-                    }
-                    else {
-                        alert("this error" + result);
-                    }
-                },
-                error: function (xhr, status, error) {
-                    var errorMessage = xhr.status + ': ' + xhr.statusText
-                    alert('Error - ' + errorMessage);
-                }
-            })
-        }
-    }
+               
+                var data = {
+                    GuestId: Guest_ID,
+                    GuestFullName: $("#Guest_Id").find("option:selected").text(),
+                    VisitPurpose: VisitPurpose_ID,
+                    VisitDate: invite_Date,
+                    VisitTime: invite_Time
+                };
+                $.ajax({
+                    type: "POST",
+                    url: localStorage.getItem('URLIndex') + 'SetGusetInvitation',
+                    data: JSON.stringify(data),
+                    contentType: "application/json",
+                    success: function (result) {
+                        if (result === "Saved") {
+                            $('.page-loader-wrapper').fadeOut();
+                            Swal.fire({
+                                title: "success!",
+                                text: "Your Invitation has been send successfully..!",
+                                icon: "success"
+                            });
+                            $("#Guest_Id").get(0).value = "";
+                            $("#VisitPurposeID").get(0).value = "";
+                            $("#inviteDate").get(0).value = "";
+                            $("#inviteTime").get(0).value = "";
 
-    $scope.CheckEmailFunction = function () {
-        debugger
-        var Name_id = $("#Re_user_name_id").val();
-        var phone_id = $("#Re_phone_id").val();
-        var email_id = $("#Re_Email_id").val();
-        var city_id = $("#CitySelect").val();
-        var Password_id = $("#rePassword_id").val();
-        if (Name_id == "") {
-            $("#Name_id_errormessage").html("Name id is a Mandatory Requirement, Please Put it..");
-            $("#Re_user_name_id").css({ "border-color": "#fb7c72", "border-weight": "5px", "border-style": "solid" });
-        }
-        else if (phone_id == "") {
-            $("#Phone_id_errormessage").html("Phone is a Mandatory Requirement, Please Put it..");
-            $("#Re_phone_id").css({ "border-color": "#fb7c72", "border-weight": "5px", "border-style": "solid" });
-        }
-        else if (email_id == "") {
-            $("#Email_id_errormessage").html("Email is a Mandatory Requirement, Please Put it..");
-            $("#Re_Email_id").css({ "border-color": "#fb7c72", "border-weight": "5px", "border-style": "solid" });
-        }
-        else if (city_id == "Choose...") {
-            $("#City_id_errormessage").html("City is a Mandatory Requirement, Please Put it..");
-            $("#Re_city_id").css({ "border-color": "#fb7c72", "border-weight": "5px", "border-style": "solid" });
-        }
-        else if (Password_id == "") {
-            $("#Re_Password_id_errormessage").html("Password is a Mandatory Requirement, Please Put it..");
-            $("#rePassword_id").css({ "border-color": "#fb7c72", "border-weight": "5px", "border-style": "solid" });
-            return;
-        }
-        else {
-            var data = new FormData;
-            data.append("Email", email_id);
-            $.ajax({
-                type: "POST",
-                url: localStorage.getItem('URLIndex') + 'CheckEmail',
-                data: data,
-                contentType: false,
-                processData: false,
-                success: function (result) {
-                    if (result == "EmailAlreadyExist") {
-                        $("#Email_id_errormessage").html("Email Already Exist");
+                        } else {
+                            $('.page-loader-wrapper').fadeOut();
+                            showMessage(result);
+                        }
+                    },
+                    error: function (xhr) {
+                        $('.page-loader-wrapper').fadeOut();
+                        alert('Error - ' + xhr.status + ': ' + xhr.statusText);
                     }
-                    else if (result == "EmailVerified") {
-                        $scope.$applyAsync(() => {
-                            $scope.StepOne = true;
-                            $scope.StepTwo = false;
-                        });
-                    }
-                    else {
-                        Console.log(result);
-                    }
-                },
-                error: function (xhr, status, error) {
-                    var errorMessage = xhr.status + ': ' + xhr.statusText
-                    alert('Error - ' + errorMessage);
-                }
-            })
-         }
-     }
-    $scope.WorkerRegistrationFunction = function () {
-        var Name_id = $("#Re_user_name_id").val();
-        var phone_id = $("#Re_phone_id").val();
-        var email_id = $("#Re_Email_id").val();
-        //var city_id = $("#Re_city_id").val();
-        var User_img = $("#User_img").get(0).files;
-        var Front_CNIC_id = $("#Front_CNIC").get(0).files;
-        var Back_CNIC_id = $("#Back_CNIC").get(0).files;
-        var fileExtension = ['jpeg', 'jpg', 'png','pdf'];
-        var Password_id = $("#rePassword_id").val();
+                });
+            }
+            else {
+               $('.page-loader-wrapper').fadeOut();
+                //Swal.fire({
+                //    title: "Cancelled!",
+                //    text: "Your Post file is safe.",
+                //    icon: "error"
+                //});
+            }
+        });
 
-        if (User_img.length == 0) {
-            $("#User_img-text-danger").html("Please upload Image!");
-            return;
-        }
-        else if ($.inArray($("#User_img").val().split('.').pop().toLowerCase(), fileExtension) == -1) {
-            $("#User_img-text-danger").html("Invalid format!");
-            return;
-        }
-        else if (Front_CNIC_id.length == 0) {
-            $("#Front-text-danger").html("Please upload Image!");
-            return;
-        }
-        else if ($.inArray($("#Front_CNIC").val().split('.').pop().toLowerCase(), fileExtension) == -1) {
-            $("#Front-text-danger").html("Invalid format!");
-            return;
-        }
-        else if (Back_CNIC_id.length == 0) {
-            $("#Back-text-danger").html("Please upload Image!");
-            return;
-        }
-        else if ($.inArray($("#Back_CNIC").val().split('.').pop().toLowerCase(), fileExtension) == -1) {
-            $("#Back-text-danger").html("Invalid format!");
-            return;
-        }
-       
-        else {
-            var data = new FormData;
-            var city_id = $("#CitySelect").find("option:selected").text();
+    } 
 
-            data.append("user_name", Name_id);
-            data.append("user_mobileNo", phone_id);
-            data.append("Email", email_id);
-            data.append("city", city_id);
-            data.append("user_pic", User_img[0]);
-            data.append("front_cnic", Front_CNIC_id[0]);
-            data.append("back_cnic", Back_CNIC_id[0]);
-            data.append("Password", Password_id);
-            $.ajax({
-                type: "POST",
-                url: localStorage.getItem('URLIndex') + 'SetWorkerRegistration',
-                data: data,
-                contentType: false,
-                processData: false,
-                success: function (result) {
-                    if (result == "Saved") {
-                        localStorage.setItem('FromSubmit', 'True')
-                        $scope.$applyAsync(() => {
-                            $scope.StepOne = true;
-                            $scope.StepTwo = true;
-                            $scope.Stepthree = false;
-                        });
-                    }
-                    else {
-                        console.log(result);
-                    }
-                },
-                error: function (xhr, status, error) {
-                    var errorMessage = xhr.status + ': ' + xhr.statusText
-                    alert('Error - ' + errorMessage);
-                }
-            })
-        }
-    }
 
 });

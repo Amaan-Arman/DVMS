@@ -5,8 +5,16 @@
       "PackagePath": "staticwebassets\\DVMS.bundle.scp.css"
     },
     {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\ContollerScript\\GuestContrller.js",
+      "PackagePath": "staticwebassets\\ContollerScript\\GuestContrller.js"
+    },
+    {
       "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\ContollerScript\\InspectionController.js",
       "PackagePath": "staticwebassets\\ContollerScript\\InspectionController.js"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\ContollerScript\\LoginController.js",
+      "PackagePath": "staticwebassets\\ContollerScript\\LoginController.js"
     },
     {
       "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\ContollerScript\\QRScannerController.js",
@@ -55,6 +63,14 @@
     {
       "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\css\\theme1.css",
       "PackagePath": "staticwebassets\\assets\\css\\theme1.css"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\Invitations\\INV20250616214553-21C108.png",
+      "PackagePath": "staticwebassets\\assets\\images\\Invitations\\INV20250616214553-21C108.png"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\Invitations\\INV20250617012431-7DB9C8.png",
+      "PackagePath": "staticwebassets\\assets\\images\\Invitations\\INV20250617012431-7DB9C8.png"
     },
     {
       "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\gallery\\1.jpg",
@@ -107,6 +123,14 @@
     {
       "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\login.png",
       "PackagePath": "staticwebassets\\assets\\images\\login.png"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\logo.png",
+      "PackagePath": "staticwebassets\\assets\\images\\logo.png"
+    },
+    {
+      "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\logoname.png",
+      "PackagePath": "staticwebassets\\assets\\images\\logoname.png"
     },
     {
       "Id": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\assets\\images\\search.svg",

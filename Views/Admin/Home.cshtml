@@ -80,7 +80,7 @@
     <div class="container vh-100" style="background:#f9fafb ;">
         <div class="row">
             <div class="col mt-5">
-                <h1 class="text-center">The DVMS</h1>
+                <h1 class="text-center">Welcome to DVMS</h1>
                 <p class="text-center p-2">
                     Your Digital Gatekeeper to Every Visit.
                 </p>
@@ -96,7 +96,7 @@
            </div>
             <div class="col-md-6 d-flex justify-content-center align-items-center flex-column">
                 @* <p class="h4"> Walk in Visitor </p> *@
-                <a href="#" ng-click="showSuccessMessage('Welcome to XYZ Corporation!','You will be attended by: abc')" class="linkclass">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#Visitor" class="linkclass">
                     <img width="100" height="100" src="https://img.icons8.com/color/100/accompany-skin-type-3.png" alt="accompany" />
                     <p class="h5 p-2 "> Walk in Visitor</p>
                 </a>
@@ -104,7 +104,89 @@
         </div>
     </div>
 
-    <!-- Modal -->
+  @*   <video id="video" width="320" height="240" autoplay></video>
+    <br />
+    <button onclick="capturePhoto()">📸 Capture Photo</button>
+    <canvas id="canvas" width="320" height="240" style="display:none;"></canvas>
+    <img id="snapshot" style="display:none;" />
+ *@
+
+
+    <!-- Visitor Modal -->
+    <div class="modal fade" id="Visitor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="VisitorLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="VisitorLabel">Visitor Detail</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="card-body">
+                        <div class="row clearfix">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <p> CNIC front picture</p>
+                                    <img id="snapshot" style="display:none;" />
+                                    <button ng-click="OpenCamerafront()" id="btntakefront" class="btn btn-primary mt-2">Take Picture</button>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <p> CNIC back picture</p>
+                                    <img id="snapshotback" style="display:none;" />
+                                    <button ng-click="OpenCameraback()" id="btntakecnicback" class="btn btn-primary mt-2">Take Picture</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" ng-click="stopScanning()" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalcamerafront" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="VisitorLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="VisitorLabel">Camera</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <video id="video" width="320" height="240" autoplay style="transform: scaleX(-1);"></video>
+                    <br />
+                    <button class="btn btn-primary" ng-click="cnicfront()">📸 Capture Photo</button>
+                    <canvas id="canvas" width="320" height="240" style="display:none;"></canvas>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" ng-click="stopCamera()" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalcameraback" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="VisitorLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="VisitorLabel">Camera</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <video id="videoback" width="320" height="240" autoplay style="transform: scaleX(-1);"></video>
+                    <br />
+                    <button class="btn btn-primary" ng-click="cnicback()">📸 Capture Photo</button>
+                    <canvas id="canvasback" width="320" height="240" style="display:none;"></canvas>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" ng-click="stopCamera()" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Guest -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
@@ -115,7 +197,7 @@
                 </div>
                 <div class="modal-body">
                     <div id="video-container" class="d-flex justify-content-center">
-                        <video id="video" playsinline></video>
+                        <video id="videoguest" playsinline></video>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -130,10 +212,11 @@
 
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/lib/angularjs/angular.min.js"></script>
-    <script src="~/lib/angularjs/scanner.js"></script>
     <script src="~/contollerscript/QRScannerController.js"></script>
     <script src="~/assets/bundles/lib.vendor.bundle.js"></script>
     <script src="~/assets/bundles/sweetalert.bundle.js"></script>
+    <script src="~/lib/angularjs/scanner.js"></script>
+    @* <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script> *@
+
 </body>
 </html>
-
