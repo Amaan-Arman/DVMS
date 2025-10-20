@@ -1,26 +1,26 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\",
+  "WorkspaceRootPath": "G:\\Support data\\Amaan\\Digital Visitor MS\\copy\\DVMS\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D24BB690-FAC8-4CF0-A7E1-E9CC644221B0}|DVMS.csproj|g:\\support data\\amaan\\digital visitor ms\\dvms\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D24BB690-FAC8-4CF0-A7E1-E9CC644221B0}|DVMS.csproj|g:\\support data\\amaan\\digital visitor ms\\copy\\dvms\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D24BB690-FAC8-4CF0-A7E1-E9CC644221B0}|DVMS.csproj|solutionrelative:controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D24BB690-FAC8-4CF0-A7E1-E9CC644221B0}|DVMS.csproj|g:\\support data\\amaan\\digital visitor ms\\dvms\\wwwroot\\contollerscript\\qrscannercontroller.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{D24BB690-FAC8-4CF0-A7E1-E9CC644221B0}|DVMS.csproj|solutionrelative:wwwroot\\contollerscript\\qrscannercontroller.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{D24BB690-FAC8-4CF0-A7E1-E9CC644221B0}|DVMS.csproj|g:\\support data\\amaan\\digital visitor ms\\copy\\dvms\\wwwroot\\contollerscript\\dasboardcontroller.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{D24BB690-FAC8-4CF0-A7E1-E9CC644221B0}|DVMS.csproj|solutionrelative:wwwroot\\contollerscript\\dasboardcontroller.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D24BB690-FAC8-4CF0-A7E1-E9CC644221B0}|DVMS.csproj|g:\\support data\\amaan\\digital visitor ms\\dvms\\views\\admin\\home.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D24BB690-FAC8-4CF0-A7E1-E9CC644221B0}|DVMS.csproj|solutionrelative:views\\admin\\home.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D24BB690-FAC8-4CF0-A7E1-E9CC644221B0}|DVMS.csproj|g:\\support data\\amaan\\digital visitor ms\\dvms\\models\\crudclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D24BB690-FAC8-4CF0-A7E1-E9CC644221B0}|DVMS.csproj|g:\\support data\\amaan\\digital visitor ms\\copy\\dvms\\models\\crudclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D24BB690-FAC8-4CF0-A7E1-E9CC644221B0}|DVMS.csproj|solutionrelative:models\\crudclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D24BB690-FAC8-4CF0-A7E1-E9CC644221B0}|DVMS.csproj|g:\\support data\\amaan\\digital visitor ms\\dvms\\wwwroot\\contollerscript\\guestcontrller.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{D24BB690-FAC8-4CF0-A7E1-E9CC644221B0}|DVMS.csproj|solutionrelative:wwwroot\\contollerscript\\guestcontrller.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{D24BB690-FAC8-4CF0-A7E1-E9CC644221B0}|DVMS.csproj|g:\\support data\\amaan\\digital visitor ms\\copy\\dvms\\models\\chat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D24BB690-FAC8-4CF0-A7E1-E9CC644221B0}|DVMS.csproj|solutionrelative:models\\chat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D24BB690-FAC8-4CF0-A7E1-E9CC644221B0}|DVMS.csproj|g:\\support data\\amaan\\digital visitor ms\\copy\\dvms\\views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D24BB690-FAC8-4CF0-A7E1-E9CC644221B0}|DVMS.csproj|solutionrelative:views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -29,9 +29,23 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedHeight": 140,
-          "SelectedChildIndex": 2,
+          "DockedHeight": 147,
+          "SelectedChildIndex": 6,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_ValidationScriptsPartial.cshtml",
+              "DocumentMoniker": "G:\\Support data\\Amaan\\Digital Visitor MS\\copy\\DVMS\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ToolTip": "G:\\Support data\\Amaan\\Digital Visitor MS\\copy\\DVMS\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-21T10:29:32.409Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
@@ -42,66 +56,55 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AdminController.cs",
-              "DocumentMoniker": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\Controllers\\AdminController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AdminController.cs",
-              "ToolTip": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\Controllers\\AdminController.cs",
-              "RelativeToolTip": "Controllers\\AdminController.cs",
-              "ViewState": "AgIAAO0AAAAAAAAAAAAswPYAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-13T13:15:18.029Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Home.cshtml",
-              "DocumentMoniker": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\Views\\Admin\\Home.cshtml",
-              "RelativeDocumentMoniker": "Views\\Admin\\Home.cshtml",
-              "ToolTip": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\Views\\Admin\\Home.cshtml",
-              "RelativeToolTip": "Views\\Admin\\Home.cshtml",
-              "ViewState": "AgIAAKEAAAAAAAAAAAAqwLYAAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-16T19:18:52.741Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "QRScannerController.js",
-              "DocumentMoniker": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\ContollerScript\\QRScannerController.js",
-              "RelativeDocumentMoniker": "wwwroot\\ContollerScript\\QRScannerController.js",
-              "ToolTip": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\ContollerScript\\QRScannerController.js",
-              "RelativeToolTip": "wwwroot\\ContollerScript\\QRScannerController.js",
-              "ViewState": "AgIAAKIAAAAAAAAAAAAAwOEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-06-16T19:06:07.673Z",
+              "Title": "CrudClass.cs",
+              "DocumentMoniker": "G:\\Support data\\Amaan\\Digital Visitor MS\\copy\\DVMS\\Models\\CrudClass.cs",
+              "RelativeDocumentMoniker": "Models\\CrudClass.cs",
+              "ToolTip": "G:\\Support data\\Amaan\\Digital Visitor MS\\copy\\DVMS\\Models\\CrudClass.cs",
+              "RelativeToolTip": "Models\\CrudClass.cs",
+              "ViewState": "AgIAAFkCAAAAAAAAAAAYwGECAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-17T12:45:28.65Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "CrudClass.cs",
-              "DocumentMoniker": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\Models\\CrudClass.cs",
-              "RelativeDocumentMoniker": "Models\\CrudClass.cs",
-              "ToolTip": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\Models\\CrudClass.cs",
-              "RelativeToolTip": "Models\\CrudClass.cs",
-              "ViewState": "AgIAAJAAAAAAAAAAAAAUwKkBAAAfAAAAAAAAAA==",
+              "Title": "Chat.cs",
+              "DocumentMoniker": "G:\\Support data\\Amaan\\Digital Visitor MS\\copy\\DVMS\\Models\\Chat.cs",
+              "RelativeDocumentMoniker": "Models\\Chat.cs",
+              "ToolTip": "G:\\Support data\\Amaan\\Digital Visitor MS\\copy\\DVMS\\Models\\Chat.cs",
+              "RelativeToolTip": "Models\\Chat.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAgwBMAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-13T17:06:39.591Z"
+              "WhenOpened": "2025-10-17T12:23:43.692Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "GuestContrller.js",
-              "DocumentMoniker": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\ContollerScript\\GuestContrller.js",
-              "RelativeDocumentMoniker": "wwwroot\\ContollerScript\\GuestContrller.js",
-              "ToolTip": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\wwwroot\\ContollerScript\\GuestContrller.js",
-              "RelativeToolTip": "wwwroot\\ContollerScript\\GuestContrller.js",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAQwAoAAAA9AAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "Dasboardcontroller.js",
+              "DocumentMoniker": "G:\\Support data\\Amaan\\Digital Visitor MS\\copy\\DVMS\\wwwroot\\ContollerScript\\Dasboardcontroller.js",
+              "RelativeDocumentMoniker": "wwwroot\\ContollerScript\\Dasboardcontroller.js",
+              "ToolTip": "G:\\Support data\\Amaan\\Digital Visitor MS\\copy\\DVMS\\wwwroot\\ContollerScript\\Dasboardcontroller.js",
+              "RelativeToolTip": "wwwroot\\ContollerScript\\Dasboardcontroller.js",
+              "ViewState": "AgIAAD8AAAAAAAAAAAA4wJ8AAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-06-13T12:06:52.073Z"
+              "WhenOpened": "2025-10-17T12:01:55.598Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "G:\\Support data\\Amaan\\Digital Visitor MS\\copy\\DVMS\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AdminController.cs",
+              "ToolTip": "G:\\Support data\\Amaan\\Digital Visitor MS\\copy\\DVMS\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "Controllers\\AdminController.cs",
+              "ViewState": "AgIAAOUFAAAAAAAAAAAMwOwFAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-16T08:35:44.339Z",
+              "EditorCaption": ""
             }
           ]
         }

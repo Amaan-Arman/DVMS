@@ -15,13 +15,15 @@
 
     <!-- Plugins css -->
     <link rel="stylesheet" href="~/assets/plugins/charts-c3/c3.min.css" />
+    <link href="~/assets/plugins/fontawesome-free/css/all.css" rel="stylesheet" />
+    <link href="~/assets/plugins/fontawesome-free/css/all.min.css" rel="stylesheet" />
 
     <!-- Core css -->
     <link rel="stylesheet" href="~/assets/css/main.css" />
     <link rel="stylesheet" href="~/assets/css/theme1.css" />
-
     <link href="~/assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <link href="~/assets/plugins/dropify/css/dropify.min.css" rel="stylesheet" />
 
 </head>
 
@@ -40,7 +42,7 @@
                 <div class="hleft">
                     <a class="header-brand" href="index-2.html"><i class="fa fa-soccer-ball-o brand-logo"></i></a>
                     <div class="dropdown">
-                        <a href="javascript:void(0)" class="nav-link user_btn"><img class="avatar" src="assets/images/user.png" alt="" data-toggle="tooltip" data-placement="right" title="User Menu" /></a>
+                        <a href="javascript:void(0)" class="nav-link user_btn"><img class="avatar" src="~/assets/images/user.png" alt="" data-toggle="tooltip" data-placement="right" title="User Menu" /></a>
                         <a href="page-search.html" class="nav-link icon xs-hide"><i class="fa fa-search"></i></a>
                         <a href="app-calendar.html" class="nav-link icon app_inbox xs-hide"><i class="fa fa-calendar"></i></a>
                         <a href="app-contact.html" class="nav-link icon xs-hide"><i class="fa fa-id-card-o"></i></a>
@@ -201,7 +203,7 @@
         <div class="user_div">
             <h5 class="brand-name mb-4">Soccer<a href="javascript:void(0)" class="user_btn"><i class="icon-logout"></i></a></h5>
             <div class="card-body">
-                <a href="page-profile.html"><img class="card-profile-img" src="assets/images/sm/avatar1.jpg" alt=""></a>
+                <a href="page-profile.html"><img class="card-profile-img" src="~/assets/images/sm/avatar1.jpg" alt=""></a>
                 <h6 class="mb-0">Peter Richards</h6>
                 <span>peter.richard@gmail.com</span>
                 <div class="d-flex align-items-baseline mt-3">
@@ -242,10 +244,10 @@
                             <h3>Developer Team</h3>
                             <h4>Hangouts</h4>
                             <ul class="list-unstyled team-info margin-0 p-t-5">
-                                <li><img src="assets/images/xs/avatar1.jpg" alt="Avatar"></li>
-                                <li><img src="assets/images/xs/avatar2.jpg" alt="Avatar"></li>
-                                <li><img src="assets/images/xs/avatar3.jpg" alt="Avatar"></li>
-                                <li><img src="assets/images/xs/avatar4.jpg" alt="Avatar"></li>
+                                <li><img src="~/assets/images/xs/avatar1.jpg" alt="Avatar"></li>
+                                <li><img src="~/assets/images/xs/avatar2.jpg" alt="Avatar"></li>
+                                <li><img src="~/assets/images/xs/avatar3.jpg" alt="Avatar"></li>
+                                <li><img src="~/assets/images/xs/avatar4.jpg" alt="Avatar"></li>
                             </ul>
                         </div>
                     </li>
@@ -280,20 +282,40 @@
             <h5 class="brand-name">Soccer <a href="javascript:void(0)" class="menu_option float-right"><i class="icon-grid font-16" data-toggle="tooltip" data-placement="left" title="Grid & List Toggle"></i></a></h5>
             <nav id="left-sidebar-nav" class="sidebar-nav">
                 <ul class="metismenu">
-                    <li class="g_heading">Project</li>
-                    <li class="active"><a href="index"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
-                    <li><a href="companies"><i class="fa fa-user"></i><span>Companies</span></a></li>
-                    <li><a href="employee"><i class="fa fa-calendar-check-o"></i><span>Add Employe</span></a></li>
-                    <li><a href="inviteguest"><i class="fa fa-list-ul"></i><span>Invite Guests</span></a></li>
-                    <li><a href="trackguest"><i class="fa fa-list-ol"></i><span>Track Guests</span></a></li>
-                    <li><a href="trackvisitor"><i class="fa fa-check-square-o"></i><span>Track Visitors</span></a></li>
+                    <li class="g_heading">Project </li>
+                    <li class="active"><a href="index"><i class="fa fa-dashboard"></i><span>Dashboard </span></a></li>
+                    @{
+                        var loginType = Context.Session.GetString("login_type");
+                    }
+
+                    @if (string.Equals(loginType, "superadmin", StringComparison.OrdinalIgnoreCase))
+                    {
+                        <li><a href="/admin/Home"><i class="fa fa-desktop"></i><span>Reception</span></a></li>
+
+                        <li><a href="/admin/companies"><i class="fa fa-building"></i><span>Companies</span></a></li>
+                    }
+                    @if (Context.Session.GetInt32("UserAccess_can_read") == 1)
+                    {
+                        <li><a href="/admin/employee"><i class="fa fa-user"></i><span>Add Employee  </span></a></li>
+                    }
+                    @if (Context.Session.GetInt32("InviteGuest_can_read") == 1)
+                    {
+                        <li><a href="/admin/inviteguest"><i class="fa fa-users"></i><span>Invite Guests</span></a></li>
+                    }
+                    @if (Context.Session.GetInt32("TrackGuest_can_read") == 1)
+                    {
+                        <li><a href="/admin/trackguest"><i class="fa fa-list-ol"></i><span>Track Guests</span></a></li>
+                    }
+                    @if (Context.Session.GetInt32("TrackVisitor_can_read") == 1)
+                    {
+                        <li><a href="/admin/trackvisitor"><i class="fa fa-list-ol"></i><span>Track Visitors</span></a></li>
+                    }
                     <li class="g_heading">App</li>
                     <li><a href="app-calendar.html"><i class="fa fa-calendar"></i><span>Calendar</span></a></li>
                     <li><a href="app-chat.html"><i class="fa fa-comments"></i><span>Chat</span></a></li>
-                    <li><a href="app-contact.html"><i class="fa fa-address-book"></i><span>Contact</span></a></li>
                     <li><a href="app-filemanager.html"><i class="fa fa-folder"></i><span>FileManager</span></a></li>
-                    <li><a href="app-setting.html"><i class="fa fa-gear"></i><span>Setting</span></a></li>
-                    <li>
+                    <li><a href="/admin/Settings"><i class="fa fa-gear"></i><span>Setting</span></a></li>
+                   @*<li>
                         <a href="javascript:void(0)" class="has-arrow arrow-c"><i class="fa fa-lock"></i><span>Authentication</span></a>
                         <ul>
                             <li><a href="login.html">Login</a></li>
@@ -302,7 +324,7 @@
                             <li><a href="404.html">404 error</a></li>
                             <li><a href="500.html">500 error</a></li>
                         </ul>
-                    </li>
+                    </li> *@
                     <li class="g_heading">Support</li>
                     <li><a href="javascript:void(0)"><i class="fa fa-support"></i><span>Need Help?</span></a></li>
                     <li><a href="javascript:void(0)"><i class="fa fa-tag"></i><span>ContactUs</span></a></li>
@@ -313,7 +335,6 @@
         @RenderBody()
 
     </div>
-    
 
     <script src="~/assets/bundles/apexcharts.bundle.js"></script>
     <script src="~/assets/bundles/counterup.bundle.js"></script>
@@ -324,7 +345,5 @@
     <script src="~/assets/plugins/dropify/js/dropify.min.js"></script>
     <script src="~/assets/js/form/dropify.js"></script>
     <script src="~/assets/bundles/knobjs.bundle.js"></script>
-
 </body>
-
 </html>

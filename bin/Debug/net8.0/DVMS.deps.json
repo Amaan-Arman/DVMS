@@ -9,8 +9,7 @@
       "DVMS/1.0.0": {
         "dependencies": {
           "Microsoft.Data.SqlClient": "6.0.2",
-          "QRCoder.Core": "1.0.3",
-          "SixLabors.ImageSharp": "3.1.10"
+          "QRCoder.Core": "1.0.3"
         },
         "runtime": {
           "DVMS.dll": {}
@@ -337,14 +336,6 @@
           "lib/net8.0/QRCoder.Core.dll": {
             "assemblyVersion": "1.0.3.0",
             "fileVersion": "1.0.3.0"
-          }
-        }
-      },
-      "SixLabors.ImageSharp/3.1.10": {
-        "runtime": {
-          "lib/net6.0/SixLabors.ImageSharp.dll": {
-            "assemblyVersion": "3.0.0.0",
-            "fileVersion": "3.1.10.0"
           }
         }
       },
@@ -676,13 +667,6 @@
       "sha512": "sha512-OklJf4yKLk26ToZUUlBYVcPYwX3BfwGO+78sTBd+OuCq7ml39/v0NnHnspbU9Boo4DwNrV+/Vi9WBz3enFPzBw==",
       "path": "qrcoder.core/1.0.3",
       "hashPath": "qrcoder.core.1.0.3.nupkg.sha512"
-    },
-    "SixLabors.ImageSharp/3.1.10": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-R1HEPcqx3v+kvlOTPouP0g/Nzzud9pHtjlgGbFax3Ivaz8kkaGfS2EPfyDGpmfoTUQ3nQ5wxdhYyYa9fwYA9cw==",
-      "path": "sixlabors.imagesharp/3.1.10",
-      "hashPath": "sixlabors.imagesharp.3.1.10.nupkg.sha512"
     },
     "System.ClientModel/1.0.0": {
       "type": "package",

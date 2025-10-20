@@ -2,15 +2,21 @@
 @{
     ViewData["Title"] = "Invite Guest";
 }
-<div class="page" ng-controller="GuestContrller">
+@if (TempData["DbVarification"] == null && TempData["NetVarification"] == null && TempData["trailVerion"] == null)
+
+{
+    <div class="page" ng-controller="GuestContrller">
     <partial name="PartialViewHeader" />
 
     <div class="section-body">
         <div class="container-fluid">
             <div class="d-flex justify-content-between align-items-center">
                 <ul class="nav nav-tabs page-header-tab">
-                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#Invite-add">Invite Guest</a></li>
-                    <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#Guest-add">Add Guest</a></li>
+                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#Invite-add">Invite Guest</a></li>
+                        @if (Context.Session.GetInt32("InviteGuest_can_create") == 1)
+                    {
+                        <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#Guest-add">Add Guest</a></li>
+                    }
                 </ul>
             </div>
         </div>
@@ -19,46 +25,89 @@
         <div class="container-fluid">
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="Invite-add" role="tabpanel">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Invite Guest</h3>
-                        </div>
-                        <form class="card-body">
-                            <div class="form-group row">
-                                <label class="col-md-3 col-form-label">Select Guest<span class="text-danger">*</span></label>
-                                @Html.DropDownListFor(model => model.GuestId, ViewBag.GuestListVB as SelectList, "Guest Name", new { @class = "form-control fieldwidth", id = "Guest_Id", @tabindex = 1 })
-                                @* <div class="col-md-7">
-                                    <select class="form-control show-tick">
+                        <div class="row clearfix">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Invite Guest</h3>
+                                    </div>
+                                    <form class="card-body">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 col-form-label">Select Guest<span class="text-danger">*</span></label>
+                                            @Html.DropDownListFor(model => model.GuestId, ViewBag.GuestListVB as SelectList, "-- select --", new { @class = "form-control fieldwidth", id = "Guest_Id", @tabindex = 1 })
+                                            @* <div class="col-md-7">
+                                        <select class="form-control show-tick">
                                         <option>Select</option>
                                         <option>High</option>
                                         <option>Medium</option>
-                                    </select>
-                                </div> *@
+                                        </select>
+                                        </div> *@
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 col-form-label">Purpose of visit<span class="text-danger">*</span></label>
+                                            <div class="col-md-7">
+                                                @Html.TextBoxFor(model => model.VisitPurpose, new { @class = "form-control", @placeholder = "For meeting", id = "VisitPurposeID", @autocomplete = "on" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 col-form-label">Visite date & time<span class="text-danger">*</span></label>
+                                            <div class="col-md-3">
+                                                <input type="date" id="inviteDate" class="form-control">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="time" id="inviteTime" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 col-form-label"></label>
+                                            <div class="col-md-7">
+                                                <button type="submit" ng-click="SetGusetInvitationFunction()" class="btn btn-primary">Send</button>
+                                                @* <button type="submit" class="btn btn-outline-secondary">Cancel</button> *@
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
                             </div>
-                            <div class="form-group row">
-                                <label class="col-md-3 col-form-label">Purpose of visit<span class="text-danger">*</span></label>
-                                <div class="col-md-7">
-                                    @Html.TextBoxFor(model => model.VisitPurpose, new { @class = "form-control", @placeholder = "For meeting", id = "VisitPurposeID", @autocomplete = "on" })
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-striped table-vcenter mb-0 text-nowrap">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="5">Invitaition List</th>
+                                                </tr>
+                                                <tr>
+                                                    <th class="w30">&nbsp;</th>
+                                                    <th>S.no</th>
+                                                    <th>Invitation ID</th>
+                                                    <th>Full Name</th>
+                                                    <th>Visit Purpose</th>
+                                                    <th>Status</th>
+                                                    <th>Visit Date</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="c in GetInvitationList">
+                                                    <td>
+                                                        <label class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1">
+                                                            <span class="custom-control-label">&nbsp;</span>
+                                                        </label>
+                                                    </td>
+                                                    <td><span>{{index+1}}</span></td>
+                                                    <td><span>{{c.invitation_ID}}</span></td>
+                                                    <td><span>{{c.guestFullName}}</span></td>
+                                                    <td><span>{{c.visitPurpose}}</span></td>
+                                                    <td><span>{{c.status}}</span></td>
+                                                    <td><span>{{c.visitDate}} | {{c.visitTime}}</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label class="col-md-3 col-form-label">Visite date & time<span class="text-danger">*</span></label>
-                                <div class="col-md-3">
-                                    <input type="date" id="inviteDate" class="form-control">
-                                </div>
-                                  <div class="col-md-3">
-                                    <input type="time" id="inviteTime" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-md-3 col-form-label"></label>
-                                <div class="col-md-7">
-                                    <button type="submit" ng-click="SetGusetInvitationFunction()" class="btn btn-primary">Send</button>
-                                    @* <button type="submit" class="btn btn-outline-secondary">Cancel</button> *@
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                        </div>
                 </div>
                 <div class="tab-pane fade" id="Guest-add" role="tabpanel">
                    
@@ -110,7 +159,7 @@
                                     <table class="table table-hover table-striped table-vcenter mb-0 text-nowrap">
                                         <thead>
                                             <tr>
-                                                <th colspan="5">Ticket Detail</th>
+                                                <th colspan="5">Guest Detail</th>
                                                 <th colspan="3">Activity</th>
                                             </tr>
                                             <tr>
@@ -127,7 +176,7 @@
                                             <tr ng-repeat="c in GetGuestList">
                                                 <td>
                                                     <label class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1" checked="">
+                                                        <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1">
                                                         <span class="custom-control-label">&nbsp;</span>
                                                     </label>
                                                 </td>
@@ -159,7 +208,14 @@
         </footer>
     </div>
 </div>
+}
+else
+{
+@Html.Partial("~/Views/Shared/PartialViewModalsValidation.cshtml")
+}
 <script src="~/assets/bundles/lib.vendor.bundle.js"></script>
 <script src="~/lib/angularjs/angular.min.js"></script>
-<script src="~/contollerscript/guestcontrller.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+<script src="~/lib/angularjs/signalr.js"></script>
+<script src="~/contollerscript/GuestContrller.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/lib/angularjs/signalRService.js"></script>

@@ -1,0 +1,170 @@
+﻿@* @model DVMS.Models.Chat *@
+
+@{
+    ViewBag.Title = "Chat App";
+}
+<style>
+    #sendmsg {
+        background: none;
+        border: none;
+        color: blueviolet;
+    }
+</style>
+@*@TempData["user_credential_id"].ToString() ng-if="getcartlist.length == 0"*@
+@if (TempData["DbVarification"] == null && TempData["NetVarification"] == null && TempData["trailVerion"] == null)
+{
+    <div class="page" ng-controller="ChatAppController">
+        <div class="section-light  chat_app">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8 col-md-12">
+                        <div class="card bg-none b-none ">
+                            <div class="card-header bline bg-none">
+                                <img ng-if="GetuserData.length > 0" class="avatar mr-3" src="~/admin_assets/images/userimg/{{GetuserData[0].user_img}}" alt="avatar">
+                                <h3 ng-if="GetuserData.length > 0" class="card-title"> {{GetuserData[0].user_name}}<small>@*Last seen: 2 hours ago*@</small></h3>
+                                <div class="card-options">
+                                    @*<a href="javascript:void(0)" class="p-1"><i class="fa fa-plus"></i></a>
+                                        <a href="javascript:void(0)" class="p-1"><i class="fa fa-cog"></i></a>
+                                        <a href="javascript:void(0)" class="p-1"><i class="fa fa-refresh"></i></a>*@
+                                    <a href="javascript:void(0)" class="p-1 chat_list_btn">Chat List <i class="fa fa-align-right"></i></a>
+                                </div>
+                            </div>
+                            <div ng-if="GetuserData.length > 0" class="chat_windows">
+                                <ul class="mb-0">
+                                    <li ng-repeat="c in GetChatbox" ng-class="{'other-message': c.receiver_user_id === @TempData["user_credential_id"].ToString(), 'my-message': c.sender_user_id === @TempData["user_credential_id"].ToString()}">
+                                        @*<img class="avatar mr-3" src="~/admin_assets/images/user.png" alt="avatar">*@
+                                        <div class="message" ng-if="c.attachmentread === '---' ">
+                                            <p class="bg-light-blue">{{c.messege_text}}</p>
+                                            @*<p class="bg-light-blue">{{c.attachmentread}}</p>*@
+                                            <span class="time">{{c.time}}, {{c.day}}</span>
+                                        </div>
+                                        <div class="message" ng-if="c.attachmentread != '---'">
+                                            <div class="media_img">
+                                                <a href="~/admin_assets/images/attachment/{{c.attachmentread}}" target="_blank"><img src="~/admin_assets/images/attachment/{{c.attachmentread}}" class="w100 img-thumbnail mb-1" /></a>
+                                            </div>
+                                            <span class="time">{{c.time}}, {{c.day}}</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="chat-message clearfix">
+                                    <a href="#" data-toggle="modal" data-target="#addtask"><i class="fa fa-paperclip"></i></a>
+                                    <div class="input-group m-0">
+                                        <input type="text" id="message_txt" class="form-control" placeholder="Enter text here...">
+                                        <button id="sendmsg" ng-click="sendmessage(GetuserData[0].user_id,GetuserData[0].user_name)" class="p-2"><i class="fa fa-paper-plane"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="chat_list section-white" id="users">
+                <ul class="nav nav-tabs" style="justify-content:space-between;" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="users-tab" data-toggle="tab" href="#users-list" role="tab" aria-controls="users-list" aria-selected="true">Users</a>
+                    </li>
+                    @*<li class="nav-item">
+                                <a class="nav-link" id="groups-tab" data-toggle="tab" href="#groups" role="tab" aria-controls="groups" aria-selected="false">Groups</a>
+                        </li>*@
+                    <li class="p-4">
+                        <a href="javascript:void(0)" class="chat_list_btn float-right"><i class="fa fa-window-close fs-3"></i></a>
+                    </li>
+                </ul>
+                <div class="input-group mt-2 mb-2">
+                    <input type="text" class="form-control search" placeholder="Search...">
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane fade" id="groups" role="tabpanel" aria-labelledby="groups-tab">
+                        <ul class="right_chat list-unstyled list">
+                            <li class="online">
+                                <a href="javascript:void(0);">
+                                    <div class="media">
+                                        @*<img class="media-object" src="admin_assets/images/xs/avatar1.jpg" alt="">*@
+                                        <div class="media-body">
+                                            <span class="name">PHP Groups</span>
+                                            <span class="message">How is the project coming</span>
+                                            <span class="badge badge-outline status"></span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade show active" id="users-list" role="tabpanel" aria-labelledby="users-tab">
+                        <ul class="right_chat list-unstyled list">
+                            <li ng-repeat="c in GetList" class="online">
+                                <a href="javascript:void(0);" ng-click="GetChat(c.user_id)">
+                                    <div class="media">
+                                        <img class="media-object" src="~/admin_assets/images/userimg/{{c.user_img}}" alt="">
+                                        <div class="media-body">
+                                            <span class="name"> {{c.user_name}}</span>
+                                            <span class="message">{{c.messege_text}}</span>
+                                            <span class="badge badge-outline status"></span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="addtask" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="title" id="defaultModalLabel">Add Picture</h6>
+                    </div>
+                    <div class="modal-body">
+                        <input id="attachment" type="file" multiple class="dropify">
+                        <small class="text-danger">Recommended image size is 5MB</small>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" ng-click="SendAttachment(GetuserData[0].user_id)" class="btn btn-primary">Send</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @Html.Partial("~/Views/Shared/PartialViewModalsValidation.cshtml")
+
+    </div>
+
+}
+else
+{
+    @Html.Partial("~/Views/Shared/PartialViewModalsValidation.cshtml")
+}
+
+@*<script src="~/Scripts/angular.min.js"></script>
+    <script src="~/ControllerScripts/ChatAppController.js"></script>
+    <script src="~/admin_assets/js/form/dropify.js"></script>*@
+@*<script src="~/admin_assets/js/form/dropify.js"></script>*@
+
+<script src="~/admin_assets/bundles/lib.vendor.bundle.js"></script>
+<script src="~/Scripts/jquery.signalR-2.4.2.min.js"></script>
+<script src="~/signalr/hubs"></script>
+<script src="~/Scripts/angular.min.js"></script>
+<script src="~/ControllerScripts/ChatAppController.js"></script>
+<script src="~/ControllerScripts/SignalRservice.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#Chat_App").addClass("active");
+
+    });
+</script>
+<script>
+    $(document).keypress(function (e) {
+        if (e.which == 13) {
+            $("#sendmsg").click();
+        }
+    });
+</script>
+<style>
+    .bpFab {
+        display:none;
+    }
+</style>

@@ -1,0 +1,203 @@
+﻿@* @model DVMS.Models.Product *@
+@* @{
+    var chatModel = new BlazeInspect.Models.Chat();
+} *@
+@{
+    ViewBag.Title = "FileManager";
+}
+@if (TempData["DbVarification"] == null && TempData["NetVarification"] == null )
+{
+    <div class="page" ng-controller="FileManagerController">
+        @* @Html.Partial("~/Views/PartialView/PartialViewHeader.cshtml", chatModel) *@
+        <partial name="PartialViewHeader" />
+
+        <div class="section-body mt-3">
+            <div class="container-fluid">
+                <div class="row clearfix">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row ">
+                                    @*<div class="col-lg-2 col-md-4 col-sm-6 py-2">
+                                            <div class="input-group">
+                                                <input id="filter_id" type="text" class="form-control" placeholder="Search">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 col-md-4 col-sm-6 py-2">
+                                            <div class="input-group">
+                                                <input id="start_date_id" type="date" class="form-control" data-provide="datepicker" placeholder="Date">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 col-md-4 col-sm-6  py-2">
+                                            <div class="input-group">
+                                                <input id="end_date_id" type="date" class="form-control" data-provide="datepicker" placeholder="Date">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2 col-sm-6  py-2">
+                                            <a ng-click="ProductSearchFunction()" class="btn btn-primary btn-block text-light" title="Search">Search</a>
+                                        </div>*@
+                                    @*<div class="col-lg-4 col-md-2 col-sm-6 d-flex justify-content-end">
+                                            <a title="Excel" tabindex="-1" href="#" id="ProductExcelID" onclick="javascript: ExcelFuncntion('#ProductExtensionListTableID', '#ProductExcelID', 'ProductSheet.xls');"><em class="fa fa-xl fa-file-excel-o ">&nbsp;</em></a>
+                                            |&nbsp;
+                                            <a title="Print" tabindex="-1" href="#" onclick="PrintforReport('Product List', '#ProductExtensionListTableID')"><em class="fa fa-xl fa-print">&nbsp;</em></a>
+                                        </div>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Upload New Files</h3>
+                                <div class="card-options">
+                                    <a href="#" data-toggle="modal" data-target="#addFile" title="Upload New"><i title="Upload New" data-toggle="tooltip" class="fa fa-plus"></i></a>
+                                    <a title="Forword To" id="ProductBtn_id" ng-click="FileShareFunction('#FileShareModalBodyId','#fileshareModalID','Share To')"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-vcenter table_custom text-nowrap spacing5 text-nowrap mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>&nbsp;</th>
+                                                <th>Name</th>
+                                                <th>Share With</th>
+                                                <th>Owner</th>
+                                                <th>File Size</th>
+                                                <th>&nbsp;</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="doc in GroupedDocumentList">
+                                                <td class="width45">
+                                                    <label class="custom-control custom-checkbox">
+                                                        <input class="custom-control-input" type="checkbox" name="Checkbox" value="{{doc.FileDetails.Doc_ID}}">
+                                                        <span class="custom-control-label">&nbsp;</span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <span class="folder-name"><i class="fa fa-file"></i> {{doc.FileName}}</span>
+                                                </td>
+                                                <td>
+                                                    <div class="avatar-list avatar-list-stacked" ng-if="doc.Users.user_name != '-'">
+                                                        <!-- Loop through user images -->
+                                                        <img class="avatar avatar-sm" ng-repeat="user in doc.Users"
+                                                             src="~/admin_assets/images/userimg/{{user.user_img}}"
+                                                             data-toggle="tooltip" title="{{user.user_name}}" />
+                                                    </div>
+                                                    <span ng-if="doc.Users.user_name == '-'"> - </span>
+                                                </td>
+                                                <td class="width100" ng-if="doc.FileDetails.user_id === @TempData["user_credential_id"]">
+                                                    <span>Me</span>
+                                                </td>
+                                                <td class="width100" ng-if="doc.FileDetails.user_id != @TempData["user_credential_id"]">
+                                                    <span>{{doc.FileDetails.owner}}</span>
+                                                </td>
+
+                                                <td class="width100 text-center">
+                                                    <span class="size">{{doc.FileDetails.file_size}} MB</span>
+                                                </td>
+                                                <td class="width100 text-center">
+                                                    <a href="~/admin_assets/File/Amaan/{{doc.FileName}}" download><i class="fa fa-download"></i></a>
+                                                </td>
+
+                                            </tr>
+
+                                            @*<tr ng-repeat="c in GetDocumentList">
+                                                    <td>
+                                                        <label class="custom-control custom-checkbox">
+                                                            <input class="custom-control-input" type="checkbox" id="checkbox_id" name="Checkbox" value="{{c.Doc_ID}}">
+                                                            <span class="custom-control-label">&nbsp;</span>
+                                                        </label>
+                                                    </td>
+                                                    <td class="width45">
+                                                        <i class="fa fa-file"></i>
+                                                    </td>
+                                                    <td>
+                                                        <span class="folder-name">{{c.File_name}}</span>
+                                                    </td>
+                                                    <td>
+                                                        <div class="avatar-list avatar-list-stacked">
+                                                            <img class="avatar avatar-sm" src="assets/images/xs/avatar1.jpg" data-toggle="tooltip" title="Avatar" />
+                                                            <img class="avatar avatar-sm" src="assets/images/xs/avatar2.jpg" data-toggle="tooltip" title="Avatar" />
+                                                        </div>
+                                                    </td>
+                                                    <td class="width100">
+                                                        <span>{{c.date}}</span>
+                                                    </td>
+                                                    <td class="width100 text-center">
+                                                        <span class="size">{{c.file_size}}</span>
+                                                    </td>
+                                                </tr>*@
+
+                                            @*<tr>
+                                                    <td class="width45">
+                                                        <i class="fa fa-folder text-danger"></i>
+                                                    </td>
+                                                    <td>
+                                                        <span class="folder-name">Holidays</span>
+                                                    </td>
+                                                    <td>
+                                                        <div class="avatar-list avatar-list-stacked">
+                                                            <img class="avatar avatar-sm" src="~/admin_assets/images/xs/avatar2.jpg" data-toggle="tooltip" title="Avatar" />
+                                                            <img class="avatar avatar-sm" src="~/admin_assets/images/xs/avatar2.jpg" data-toggle="tooltip" title="Avatar" />
+                                                            <img class="avatar avatar-sm" src="~/admin_assets/images/xs/avatar3.jpg" data-toggle="tooltip" title="Avatar" />
+                                                        </div>
+                                                    </td>
+                                                    <td class="width100">
+                                                        <span>John</span>
+                                                    </td>
+
+                                                    <td class="width100 text-center">
+                                                        <span class="size"> 50MB </span>
+                                                    </td>
+                                                </tr>*@
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="addFile" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="title" id="defaultModalLabel">Upload New</h6>
+                    </div>
+                    <div class="modal-body">
+                        <input id="attachment" type="file" multiple class="dropify">
+                        <small class="text-danger">Recommended size is 5MB</small>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" ng-click="SendAttachment()" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @Html.Partial("~/Views/Shared/PartialViewModalsValidation.cshtml")
+    </div>
+}
+else
+{
+    @Html.Partial("~/Views/Shared/PartialViewModalsValidation.cshtml")
+}
+<script>
+    $(document).ready(function () {
+        $("#File_manager").addClass("active");
+    });
+</script>
+
+<script src="~/admin_assets/bundles/lib.vendor.bundle.js"></script>
+<script src="~/Scripts/jquery.signalR-2.4.2.min.js"></script>
+<script src="~/signalr/hubs"></script>
+<script src="~/Scripts/angular.min.js"></script>
+<script src="~/lib/angularjs/signalr.js"></script>
+
+<script src="~/ControllerScripts/FileManagerController.js"></script>
+<script src="~/ControllerScripts/SignalRservice.js"></script>
+@*<script src="~/admin_assets/plugins/dropify/js/dropify.min.js"></script>
+    <script src="~/admin_assets/js/form/dropify.js"></script>*@

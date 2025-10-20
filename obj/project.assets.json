@@ -486,22 +486,6 @@
           }
         }
       },
-      "SixLabors.ImageSharp/3.1.10": {
-        "type": "package",
-        "compile": {
-          "lib/net6.0/SixLabors.ImageSharp.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net6.0/SixLabors.ImageSharp.dll": {
-            "related": ".xml"
-          }
-        },
-        "build": {
-          "build/SixLabors.ImageSharp.props": {}
-        }
-      },
       "System.ClientModel/1.0.0": {
         "type": "package",
         "dependencies": {
@@ -1530,22 +1514,6 @@
         "qrcoder.core.nuspec"
       ]
     },
-    "SixLabors.ImageSharp/3.1.10": {
-      "sha512": "R1HEPcqx3v+kvlOTPouP0g/Nzzud9pHtjlgGbFax3Ivaz8kkaGfS2EPfyDGpmfoTUQ3nQ5wxdhYyYa9fwYA9cw==",
-      "type": "package",
-      "path": "sixlabors.imagesharp/3.1.10",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE",
-        "build/SixLabors.ImageSharp.props",
-        "lib/net6.0/SixLabors.ImageSharp.dll",
-        "lib/net6.0/SixLabors.ImageSharp.xml",
-        "sixlabors.imagesharp.128.png",
-        "sixlabors.imagesharp.3.1.10.nupkg.sha512",
-        "sixlabors.imagesharp.nuspec"
-      ]
-    },
     "System.ClientModel/1.0.0": {
       "sha512": "I3CVkvxeqFYjIVEP59DnjbeoGNfo/+SZrCLpRz2v/g0gpCHaEMPtWSY0s9k/7jR1rAsLNg2z2u1JRB76tPjnIw==",
       "type": "package",
@@ -2261,8 +2229,7 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "Microsoft.Data.SqlClient >= 6.0.2",
-      "QRCoder.Core >= 1.0.3",
-      "SixLabors.ImageSharp >= 3.1.10"
+      "QRCoder.Core >= 1.0.3"
     ]
   },
   "packageFolders": {
@@ -2272,11 +2239,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\DVMS.csproj",
+      "projectUniqueName": "G:\\Support data\\Amaan\\Digital Visitor MS\\copy\\DVMS\\DVMS.csproj",
       "projectName": "DVMS",
-      "projectPath": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\DVMS.csproj",
+      "projectPath": "G:\\Support data\\Amaan\\Digital Visitor MS\\copy\\DVMS\\DVMS.csproj",
       "packagesPath": "C:\\Users\\HOME\\.nuget\\packages\\",
-      "outputPath": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\obj\\",
+      "outputPath": "G:\\Support data\\Amaan\\Digital Visitor MS\\copy\\DVMS\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -2321,10 +2288,6 @@
           "QRCoder.Core": {
             "target": "Package",
             "version": "[1.0.3, )"
-          },
-          "SixLabors.ImageSharp": {
-            "target": "Package",
-            "version": "[3.1.10, )"
           }
         },
         "imports": [

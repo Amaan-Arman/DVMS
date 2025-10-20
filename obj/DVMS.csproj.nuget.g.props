@@ -23,7 +23,4 @@
       <Link>runtimeconfig.template.json</Link>
     </Content>
   </ItemGroup>
-  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <Import Project="$(NuGetPackageRoot)sixlabors.imagesharp\3.1.10\build\SixLabors.ImageSharp.props" Condition="Exists('$(NuGetPackageRoot)sixlabors.imagesharp\3.1.10\build\SixLabors.ImageSharp.props')" />
-  </ImportGroup>
 </Project>

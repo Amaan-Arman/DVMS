@@ -1,4 +1,5 @@
-﻿@{
+﻿@model DVMS.Models.Admin
+@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -44,7 +45,8 @@
             text-decoration:none;
 
             border-radius: 16px;
-            padding: 2rem;
+            border-color:#115740;
+             padding: 2rem;
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
             transition: transform 0.2s, box-shadow 0.2s;
         }
@@ -54,7 +56,7 @@
         .linkclass:hover {
             background: #f9fafb ;
             color:white;
-            border: 2px solid white;
+                border: 2px solid #4caf50;
             transition: all .3s ease-in-out;
 
             transform: translateY(-5px);
@@ -63,35 +65,70 @@
       h1{
             font-family: 'Poppins', sans-serif;
             font-size: 2rem;
-            font-weight: 500;
-            color: #1f2937;
+            /* font-weight: 500; */
+            /* color: #1f2937; */
+            /* font-size: 3rem; */
+            font-weight: 700;
+            color: #002244;
       }
         p {
             font-size: 1rem;
             color: #6b7280; /* Muted gray */
         }
+/* 
+        #guideText {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1rem;
+            font-weight: bold;
+            color: yellow;
+            text-shadow: 1px 1px 3px black;
+        }
+        .camera-container {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            max-width: 540px; 
+            aspect-ratio: 4/3; 
+            margin: auto;
+        }
+        #overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            width: 540px;
+            height: 405px;
+        }
+        #video {
+            width: 540px; 
+            height: 405px; 
+            border-radius: 8px;
+            object-fit: cover;
+        } */
+
     </style>
     <title>Entrance - DVMS</title>
 </head>
 
-<body ng-controller="QRScannerController">
-
-
-    <div class="container vh-100" style="background:#f9fafb ;">
+<body ng-controller="QRScannerController" style="background:linear-gradient(135deg,#f8f9fa 0%,#e6f0ed 100%) ;">
+    <div class="container vh-100" >
         <div class="row">
             <div class="col mt-5">
-                <h1 class="text-center">Welcome to DVMS</h1>
-                <p class="text-center p-2">
+                <h1 class="text-center" >Welcome to DVMS</h1>
+                <p class="text-center p-2" style="font-size: 1.2rem; font-weight: 700;">
                     Your Digital Gatekeeper to Every Visit.
                 </p>
             </div>
         </div>
-
         <div class="row p-2 my-4 " id="Qcontainer">
             <div class="col-md-6 d-flex justify-content-center align-items-center flex-column">
                 <a href="#" ng-click="startScanning()" class="linkclass" >
                     <img width="100" height="100" src="https://img.icons8.com/color/100/man-in-a-tuxedo-skin-type-3.png" alt="man" />
-                    <p class="h5 p-2 ">Guest</p>
+                    <p class="h5 p-2 ">Guest </p>
+                    <p class="h6" >Check-In / Check-Out</p>
                 </a>
            </div>
             <div class="col-md-6 d-flex justify-content-center align-items-center flex-column">
@@ -104,14 +141,6 @@
         </div>
     </div>
 
-  @*   <video id="video" width="320" height="240" autoplay></video>
-    <br />
-    <button onclick="capturePhoto()">📸 Capture Photo</button>
-    <canvas id="canvas" width="320" height="240" style="display:none;"></canvas>
-    <img id="snapshot" style="display:none;" />
- *@
-
-
     <!-- Visitor Modal -->
     <div class="modal fade" id="Visitor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="VisitorLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
@@ -121,51 +150,134 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="card-body">
-                        <div class="row clearfix">
+                    <div class="row clearfix ">
+                        <div class="col-md-3 col-sm-12 py-2">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" id="visitorName" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-12 py-2">
+                            <label>Gender</label>
+                            <select class="form-control show-tick" id="GenderID">
+                                <option value="">-- Select --</option>
+                                <option value="1">Male</option>
+                                <option value="2">Female</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 col-sm-12 py-2">
+                            <label>Company Name</label>
+                            @Html.DropDownListFor(model => model.Company_id, ViewBag.CompanyListVB as SelectList, "-- Select --  ",
+                                     new { @class = "form-control fieldwidth", id = "company_Id", @tabindex = 1, ng_model = "selectedCompany", ng_change = "loadEmployees()" })
+                        </div>
+                        <div class="col-md-3 col-sm-12 py-2">
+                            <label>Department Name</label>
+                            @Html.DropDownListFor(model => model.Department_id, ViewBag.DepartmentListVB as SelectList, "-- Select --  ", 
+                            new { @class = "form-control fieldwidth", id = "Department_Id", @tabindex = 1 })
+                        </div>
+                        <div class="col-md-4 col-sm-12 py-2">
+                            <label>Employee Name</label>
+                            <!-- Employee Dropdown (AngularJS Controlled) -->
+                            <select class="form-control fieldwidth"
+                                    id="Employee_Id"
+                                    ng-model="selectedEmployee"
+                                    ng-options="e.employee_id as e.employee_name for e in employees track by e.employee_id">
+                                <option value="">-- Select Employee --</option>
+                            </select>
+                            @* @Html.DropDownListFor(model => model.Employee_id, ViewBag.EmployeeListVB as SelectList, "-- Select --  ", new { @class = "form-control fieldwidth", id = "Employee_Id", @tabindex = 1 }) *@
+                        </div>
+                        <div class="col-md-6 col-sm-12 py-2">
+                            <div class="form-group">
+                                <label>Purpose of Visit</label>
+                                <input type="text" id="visitorPurpose" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix py-2">
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <p> CNIC front picture</p>
-                                    <img id="snapshot" style="display:none;" />
+                                    <img id="snapshot" @* style="display:none;" *@ />
                                     <button ng-click="OpenCamerafront()" id="btntakefront" class="btn btn-primary mt-2">Take Picture</button>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-sm-12">
+                          @*   <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <p> CNIC back picture</p>
                                     <img id="snapshotback" style="display:none;" />
                                     <button ng-click="OpenCameraback()" id="btntakecnicback" class="btn btn-primary mt-2">Take Picture</button>
                                 </div>
-                            </div>
+                            </div> *@
                         </div>
-                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" ng-click="stopScanning()" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" ng-click="InsertVisitor()" class="btn btn-primary" >Check-IN</button>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="modal fade" id="modalcamerafront" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="VisitorLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <!-- use modal-xl for large -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="VisitorLabel">Camera</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div style="position: relative; display: inline-block;">
+                        <video id="video" autoplay playsinline width="400" height="300"></video>
+                        <canvas id="overlay" width="400" height="300"
+                                style="position: absolute; top: 0; left: 0;"></canvas>
+                        <div id="guideText"
+                             style="position: absolute; bottom: 10px; width: 100%; text-align: center;
+                                        font-size: 16px; font-weight: bold; color: yellow;
+                                        text-shadow: 1px 1px 3px black;"></div>
+                    </div>
+                    <!-- center everything -->
+                   @*  <div class="camera-container">
+                        <video id="video" autoplay playsinline></video>
+                        <canvas id="overlay"></canvas>
+                        <div id="guideText"></div>
+                    </div> *@
+                </div>
+                <div class="modal-footer ">
+                    <button type="button" ng-click="stopCamera()" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="switchCamera" class="btn text-light" onclick="switchCamera()" style="background-color: rgb(21, 19, 133);">Switch Camera</button>
+                    @* <button class="btn btn-primary" ng-click="captureCardDirectly()">📸 Capture Photo</button> *@
+                </div>
+            </div>
+        </div>
+    </div>
+
+@*     <div class="modal fade" id="modalcamerafront" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="VisitorLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-lg  modal-dialog-centered ">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="VisitorLabel">Camera</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <video id="video" width="320" height="240" autoplay style="transform: scaleX(-1);"></video>
-                    <br />
-                    <button class="btn btn-primary" ng-click="cnicfront()">📸 Capture Photo</button>
-                    <canvas id="canvas" width="320" height="240" style="display:none;"></canvas>
+                    <div style="position: relative; display: inline-block;">
+                        <video id="video" autoplay playsinline width="400" height="300" ></video>
+                        <canvas id="overlay" width="400" height="300"
+                                style="position: absolute; top: 0; left: 0;"></canvas>
+                        <div id="guideText"
+                                 style="position: absolute; bottom: 10px; width: 100%; text-align: center;
+                                        font-size: 16px; font-weight: bold; color: yellow;
+                                        text-shadow: 1px 1px 3px black;"></div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" ng-click="stopCamera()" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="switchCamera" class="btn text-light" onclick="switchCamera()"  style="background-color: rgb(21, 19, 133);">Switch Camera</button>
+                    <button class="btn btn-primary" ng-click="captureCardDirectly()">📸 Capture Photo</button>
                 </div>
             </div>
         </div>
-    </div>
+    </div> *@
     <div class="modal fade" id="modalcameraback" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="VisitorLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered ">
             <div class="modal-content">
@@ -176,11 +288,12 @@
                 <div class="modal-body">
                     <video id="videoback" width="320" height="240" autoplay style="transform: scaleX(-1);"></video>
                     <br />
-                    <button class="btn btn-primary" ng-click="cnicback()">📸 Capture Photo</button>
+                    @* <button class="btn btn-primary" ng-click="cnicback()">📸 Capture Photo</button> *@
                     <canvas id="canvasback" width="320" height="240" style="display:none;"></canvas>
                 </div>
                 <div class="modal-footer">
                     <button type="button" ng-click="stopCamera()" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" ng-click="cnicback()">📸 Capture Photo</button>
                 </div>
             </div>
         </div>
@@ -207,16 +320,21 @@
         </div>
     </div>
 
-
     @* @Html.Partial("~/Views/Shared/PartialViewModalsValidation.cshtml") *@
+    <script async src="https://docs.opencv.org/4.x/opencv.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
 
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/lib/angularjs/angular.min.js"></script>
+    <script src="~/lib/angularjs/signalr.js"></script>
     <script src="~/contollerscript/QRScannerController.js"></script>
+    <script src="~/lib/angularjs/signalRService.js"></script>
+
     <script src="~/assets/bundles/lib.vendor.bundle.js"></script>
     <script src="~/assets/bundles/sweetalert.bundle.js"></script>
     <script src="~/lib/angularjs/scanner.js"></script>
-    @* <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script> *@
 
+    @* <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script> *@
 </body>
 </html>

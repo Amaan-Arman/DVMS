@@ -1,26 +1,40 @@
 ﻿var app = angular.module('Homeapp', []);
-app.controller('GuestContrller', function ($scope, $http) {
+app.controller('GuestContrller', function ($scope, $http, SignalRService) {
+
+    SignalRService.init($scope); // Initialize SignalR
 
     localStorage.setItem('URLIndex', '/Admin/')
     function showMessage(msg) {
         swal(msg);
     }
+    function showErrorMessage(msg) {
+        swal("failed", msg, "error");
+    } 
     function showError(errorCode) {
         switch (errorCode) {
             case "DataBaseError":
-                showWithTitleMessage("<strong>Database Connectivity Error</strong>, Please check the application database connection...");
+                showErrorMessage("<strong>Database Connectivity Error</strong>, Please check the application database connection...");
                 break;
             case "NetworkError":
-                showWithTitleMessage("<strong>Internet Connectivity Error</strong>, Please check the Internet connection...");
+                showErrorMessage("<strong>Internet Connectivity Error</strong>, Please check the Internet connection...");
                 break;
             case "ExceptionError":
-                showWithTitleMessage("<strong>Exception Error</strong>, Please Check the Error Log...");
+                showErrorMessage("<strong>Exception Error</strong>, Please Check the Error Log...");
                 break;
             default:
-                showWithTitleMessage(errorCode);
+                showErrorMessage(errorCode);
                 break;
         }
     }
+
+    $http.get(localStorage.getItem('URLIndex') + 'GetInvitationList').then(function (i) {
+        debugger
+        $scope.GetInvitationList = i.data;
+    },
+        function (error) {
+            alert(error);
+            $scope.GetInvitationList = error;
+        });
 
     $http.get(localStorage.getItem('URLIndex') + 'GetGuestList').then(function (i) {
         debugger
@@ -177,6 +191,4 @@ app.controller('GuestContrller', function ($scope, $http) {
         });
 
     } 
-
-
 });

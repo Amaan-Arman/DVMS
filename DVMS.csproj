@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -7,14 +7,27 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Login\" />
+    <Content Remove="wwwroot\ContollerScript\ServicesController.js" />
+    <Content Remove="wwwroot\js\signalRService.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\assets\images\Invitations\" />
+    <Folder Include="wwwroot\assets\images\VisitorIDs\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.2" />
     <PackageReference Include="QRCoder.Core" Version="1.0.3" />
-    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="tessdata\eng.traineddata">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="tessdata\urd.traineddata">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

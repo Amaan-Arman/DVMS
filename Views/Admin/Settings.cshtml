@@ -1,0 +1,206 @@
+﻿@model DVMS.Models.login
+@{
+    ViewBag.Title = "Setting";
+}
+@* @{
+    var chatModel = new BlazeInspect.Models.Chat();
+} *@
+@if (TempData["DbVarification"] == null && TempData["NetVarification"] == null && TempData["trailVerion"] == null)
+{
+    <div class="page" ng-controller="Settingscontroller">
+        @* @Html.Partial("~/Views/PartialView/PartialViewHeader.cshtml", chatModel) *@
+        <partial name="PartialViewHeader" />
+
+        <div class="section-body">
+            <div class="container-fluid">
+                <div class="row clearfix">
+                    <div class="col-lg-12">
+                        <div class="d-lg-flex justify-content-between">
+                            <ul class="nav nav-tabs page-header-tab">
+                                <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#Change_Password">Change Password </a></li>
+                                @{
+                                    var loginType = Context.Session.GetString("login_type");
+                                }
+
+                                @if (string.Equals(loginType, "Manager", StringComparison.OrdinalIgnoreCase))
+                                {
+                                  <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#Roles_Permissions">Roles & Permissions</a></li>
+                                }
+                                @*<li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#Company_Settings">Company</a></li>*@
+                                @*<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Localization">Localization</a></li>*@
+                                @*<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Email_Settings">Email</a></li>*@
+                                @*<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Invoice_Settings">Invoice</a></li>*@
+                                @*<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Notifications">Notifications </a></li>*@
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-body">
+            <div class="container-fluid">
+                <div class="row clearfix">
+                    <div class="col-md-12">
+                        <div class="tab-content">
+                            <div class="tab-pane " id="Roles_Permissions">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Roles & Permissions</h3>
+                                        <div class="card-options">
+                                            <a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fa fa-chevron-up"></i></a>
+                                            <a href="#" class="card-options-fullscreen" data-toggle="card-fullscreen"><i class="fa fa-maximize"></i></a>
+                                            @*<a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>*@
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label>Select User</label>
+                                            @Html.DropDownListFor(model => model.user_credential_id, ViewBag.User_NameVB as SelectList, "Select User", new { @class = "form-control chzn-select fieldwidth", @style = "height:45px", id = "user_id", @tabindex = 1 })
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table class="table table-striped mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Module Permission</th>
+                                                        <th>Read</th>
+                                                        <th>Create</th>
+                                                        <th>Delete</th>
+                                                        <th>Update</th>
+                                                        <th>Print</th>
+                                                        <th>Report</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr ng-repeat="c in GetRight">
+                                                        <td>{{c.module_name}}</td>
+                                                        <td>
+                                                            <label class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" ng-checked="c.can_read=== 1"
+                                                                       id="{{'CustomRightbtn-'+c.can_read}}" ng-click="RightsFunction(c.module_id, 'can_read' ,c.can_read,'#user_id')" />
+                                                                <span class="custom-control-label">&nbsp;</span>
+                                                            </label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" ng-checked="c.can_create=== 1"
+                                                                       id="{{'CustomRightbtn-'+c.can_read}}" ng-click="RightsFunction(c.module_id, 'can_create' ,c.can_create,'#user_id')" />
+                                                                <span class="custom-control-label">&nbsp;</span>
+                                                            </label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" ng-checked="c.can_delete=== 1"
+                                                                       id="{{'CustomRightbtn-'+c.can_read}}" ng-click="RightsFunction(c.module_id, 'can_delete' ,c.can_delete,'#user_id')" />
+                                                                <span class="custom-control-label">&nbsp;</span>
+                                                            </label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" ng-checked="c.can_update=== 1"
+                                                                       id="{{'CustomRightbtn-'+c.can_read}}" ng-click="RightsFunction(c.module_id, 'can_update' ,c.can_update,'#user_id')" />
+                                                                <span class="custom-control-label">&nbsp;</span>
+                                                            </label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" ng-checked="c.can_print=== 1"
+                                                                       id="{{'CustomRightbtn-'+c.can_read}}" ng-click="RightsFunction(c.module_id, 'can_print' ,c.can_print,'#user_id')" />
+                                                                <span class="custom-control-label">&nbsp;</span>
+                                                            </label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" ng-checked="c.can_report=== 1"
+                                                                       id="{{'CustomRightbtn-'+c.can_read}}" ng-click="RightsFunction(c.module_id, 'can_report' ,c.can_report,'#user_id')" />
+                                                                <span class="custom-control-label">&nbsp;</span>
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane active show" id="Change_Password">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Change Password</h3>
+                                        <div class="card-options">
+                                            <a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fa fa-chevron-up"></i></a>
+                                            <a href="#" class="card-options-fullscreen" data-toggle="card-fullscreen"><i class="fa fa-maximize"></i></a>
+                                            @*<a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>*@
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row clearfix">
+
+                                            <div class="col-lg-12 col-md-12">
+                                                <hr>
+                                                <h6>Change Password</h6>
+                                                <div class="form-group">
+                                                    <input type="password" id="current" class="form-control" placeholder="Current Password">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="password" id="newpassword" class="form-control" placeholder="New Password">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input id="connewpassword" type="password" class="form-control" placeholder="Confirm New Password">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 m-t-20 text-right">
+                                                <button type="button" ng-click="SetNewPassword()" class="btn btn-primary">SAVE</button> &nbsp;
+                                                <button type="button" class="btn btn-default">CANCEL</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-body">
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <a href="">The Inspection Pro</a>
+                        </div>
+                        @*<div class="col-md-6 col-sm-12 text-md-right">
+                                <ul class="list-inline mb-0">
+                                    <li class="list-inline-item"><a href="doc/index.html">Documentation</a></li>
+                                    <li class="list-inline-item"><a href="javascript:void(0)">FAQ</a></li>
+                                    <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-outline-primary btn-sm">Buy Now</a></li>
+                                </ul>
+                            </div>*@
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+}
+else
+{
+    @* @Html.Partial("~/Views/Shared/PartialViewModalsValidation.cshtml") *@
+}
+
+@* <script src="~/signalr/hubs"></script> *@
+@* <script src="~/Scripts/jquery.signalR-2.4.2.min.js"></script> *@
+@* <script src="~/ControllerScripts/SignalRservice.js"></script> *@
+<script src="~/assets/bundles/sweetalert.bundle.js"></script>
+<script src="~/assets/bundles/lib.vendor.bundle.js"></script>
+<script src="~/lib/angularjs/angular.min.js"></script>
+<script src="~/lib/angularjs/signalr.js"></script>
+
+<script src="~/contollerscript/Settingscontroller.js"></script>
+<script src="~/lib/angularjs/signalRService.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#Setting").addClass("active");
+
+    });
+</script>

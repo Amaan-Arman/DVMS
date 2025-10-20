@@ -1,0 +1,67 @@
+﻿@model DVMS.Models.Admin
+@{
+    ViewBag.Title = "Detail";
+    Layout = null;
+}
+<link href="~/DataTablePlugin/datatables.min.css" rel="stylesheet" />
+<script src="~/DataTablePlugin/datatables.min.js"></script>
+<link href="~/DataTablePlugin/rowReorder.dataTables.min.css" rel="stylesheet" />
+<script>
+    $(document).ready(function () {
+        $('#DetailTableID').DataTable();
+    });
+    $(document).ready(function () {
+
+        var table = $('#DetailTableID').DataTable();
+
+        // Sort by column 1 and then re-draw
+        table.order([0, 'asc']).draw();
+    });
+</script>
+@* @if (TempData["DbVarification"] == null && TempData["NetVarification"] == null)
+{ *@
+
+    <div class="container">
+        @*<div class="col-lg-12 col-md-12 col-sm-12">*@
+            <div class="table-responsive" >
+                <table id="DetailTableID" class="table table-hover table-striped table-vcenter mb-0 text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>S.no</th>
+                            <th>Srerial No</th>
+                            <th>Location </th>
+                            <th>Type </th>
+                            <th>Capacity </th>
+                            <th>Manufacturer </th>
+                            <th>Status </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.DetailFuntionVB != null)
+                        {
+                        int count = 0;
+                            foreach (var item in ViewBag.DetailFuntionVB)
+                            {
+                                count++;
+                                <tr>
+                                    <td>@count </td>
+                                    <td><span>@item.SerialNumber </span></td>
+                                    <td><span>@item.Location_ </span></td>
+                                    <td><span>@item.Type </span></td>
+                                    <td><span>@item.Capacity </span></td>
+                                    <td><span>@item.Manufacturer </span></td>
+                                    <td><span>@item.Status </span></td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        @*</div>*@
+    </div>
+
+@* }
+else
+{
+    @Html.Partial("~/Views/Shared/PartialViewInternetConnection.cshtml")
+} *@

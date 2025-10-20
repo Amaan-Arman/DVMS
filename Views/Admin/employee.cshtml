@@ -1,7 +1,12 @@
+@model DVMS.Models.Employee
+
 @{
     ViewData["Title"] = "Home Page";
 }
-<div class="page">
+@if (TempData["DbVarification"] == null && TempData["NetVarification"] == null && TempData["trailVerion"] == null)
+{
+<div class="page" ng-controller="Employeecontroller">
+    <partial name="PartialViewHeader" />
 
     <div class="section-body mt-3">
         <div class="container-fluid">
@@ -11,8 +16,11 @@
                         <div class="card-body">
                             <div class="d-md-flex justify-content-between mb-2">
                                 <ul class="nav nav-tabs b-none">
-                                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#list"><i class="fa fa-list-ul"></i> Clients List</a></li>
+                                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#list"><i class="fa fa-list-ul"></i> Employee List</a></li>
+                                    @if(Context.Session.GetInt32("UserAccess_can_create") == 1)
+                                    {
                                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#addnew"><i class="fa fa-plus"></i> Add New</a></li>
+                                    }
                                 </ul>
                             </div>
                         </div>
@@ -32,27 +40,12 @@
                                     <div class="row">
                                         <div class="col-lg-2 col-md-4 col-sm-6">
                                             <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="id">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 col-md-4 col-sm-6">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Priority">
+                                                <input type="text" class="form-control" placeholder="Name">
                                             </div>
                                         </div>
                                         <div class="col-lg-2 col-md-4 col-sm-6">
                                             <div class="input-group">
                                                 <input type="text" class="form-control" placeholder="Department">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 col-md-4 col-sm-6">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Agent">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 col-md-4 col-sm-6">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" data-provide="datepicker" placeholder="Date">
                                             </div>
                                         </div>
                                         <div class="col-lg-2 col-md-4 col-sm-6">
@@ -68,65 +61,35 @@
                                     <table class="table table-hover table-striped table-vcenter mb-0 text-nowrap">
                                         <thead>
                                             <tr>
-                                                <th colspan="5">Ticket Detail</th>
+                                                <th colspan="5">Employee Detail</th>
                                                 <th colspan="3">Activity</th>
                                             </tr>
                                             <tr>
                                                 <th class="w30">&nbsp;</th>
-                                                <th>ID</th>
-                                                <th>Title</th>
-                                                <th>Priority</th>
+                                                <th>S.no</th>
+                                                <th>Employee Name</th>
+                                                <th>Email</th>
+                                                <th>Phone</th>
                                                 <th>Department</th>
-                                                <th>Agent</th>
+                                                <th>Role</th>
                                                 <th>Date</th>
-                                                <th>Activity</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    <label class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1" checked="">
-                                                        <span class="custom-control-label">&nbsp;</span>
-                                                    </label>
-                                                </td>
-                                                <td><a href="#">ASD-5258</a></td>
-                                                <td><span>It is a long established fact that a reader</span></td>
-                                                <td><span class="tag tag-default">lower</span></td>
-                                                <td><span>Pre-Sales</span></td>
-                                                <td><span>Archie Cantones</span></td>
-                                                <td><span>6 hours ago</span></td>
-                                                <td>No reply yet</td>
-                                            </tr>
-                                            <tr>
+                                            <tr ng-repeat="c in GetEmployeeList">
                                                 <td>
                                                     <label class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1">
                                                         <span class="custom-control-label">&nbsp;</span>
                                                     </label>
                                                 </td>
-                                                <td><a href="#">ASD-8793</a></td>
-                                                <td><span>Measures your Current Assets / Current</span></td>
-                                                <td><span class="tag tag-danger">High</span></td>
-                                                <td><span>Pre-Sales</span></td>
-                                                <td><span>Rose Orcullo</span></td>
-                                                <td><span>9 hours ago</span></td>
-                                                <td>2 reply</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1">
-                                                        <span class="custom-control-label">&nbsp;</span>
-                                                    </label>
-                                                </td>
-                                                <td><a href="#">ASD-2500</a></td>
-                                                <td><span>There are many variations of passages</span></td>
-                                                <td><span class="tag tag-info">Medium</span></td>
-                                                <td><span>Pre-Sales</span></td>
-                                                <td><span>Charize Cericoz</span></td>
-                                                <td><span>10 hours ago</span></td>
-                                                <td>1 reply</td>
+                                                <td>{{c.index+1}}</td>
+                                                <td><span>{{c.employeeName}}</span></td>
+                                                <td><span>{{c.email}}</span></td>
+                                                <td><span>{{c.phone}}</span></td>
+                                                <td><span>{{c.department}}</span></td>
+                                                <td><span>{{c.role}}</span></td>
+                                                <td><span>{{c.date_time}}</span></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -140,51 +103,66 @@
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Add Client</h3>
+                                    <h3 class="card-title">Add Employee</h3>
                                 </div>
                                 <form class="card-body">
                                     <div class="row clearfix">
                                         <div class="col-md-4 col-sm-12">
                                             <div class="form-group">
+                                                <label>Login ID</label>
+                                                @Html.TextBoxFor(model => model.employee_loginID, new { @class = "form-control", @placeholder = "Full Name", id = "employee_loginID", @autocomplete = "off" })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
                                                 <label>Full Name</label>
-                                                <input type="text" class="form-control">
+                                                @Html.TextBoxFor(model => model.employeeName, new { @class = "form-control", @placeholder = "Full Name", id = "employeeName", @autocomplete = "off" })
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-sm-12">
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <input type="text" class="form-control">
+                                                @Html.TextBoxFor(model => model.email, new { @class = "form-control", @placeholder = "xyz@gmail.com", id = "employeeemail", @autocomplete = "off" })
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-sm-12">
                                             <div class="form-group">
                                                 <label>Phone</label>
-                                                <input type="text" class="form-control">
+                                                @Html.TextBoxFor(model => model.phone, new { @class = "form-control", @placeholder = "***-********", id = "employeephone", @autocomplete = "off" })
                                             </div>
                                         </div>
+                                        @{
+                                            var loginType = Context.Session.GetString("login_type");
+                                        }
+                                        @if (string.Equals(loginType, "superadmin", StringComparison.OrdinalIgnoreCase))
+
+                                        {
                                         <div class="col-md-4 col-sm-12">
-                                            <label>Gender</label>
-                                            <select class="form-control show-tick">
-                                                <option value="">-- Gender --</option>
-                                                <option value="10">Male</option>
-                                                <option value="20">Female</option>
-                                            </select>
+                                            <div class="form-group">
+                                                <label>Company</label>
+                                                    @Html.DropDownListFor(model => model.companyName, ViewBag.CompanyListVB as SelectList, "-- Select --  ", new { @class = "form-control fieldwidth", id = "companyName" })
+                                            </div>
                                         </div>
+                                        }
                                         <div class="col-md-4 col-sm-12">
                                             <div class="form-group">
                                                 <label>Department</label>
-                                                <input type="text" class="form-control">
+                                                @Html.DropDownListFor(model => model.department, ViewBag.DepartmentListVB as SelectList, "-- Select --  ", new { @class = "form-control fieldwidth", id = "employee_department"})
                                             </div>
                                         </div>
-                                        <div class="col-md-4 col-sm-12">
+                                       <div class="col-md-4 col-sm-12">
                                             <div class="form-group">
                                                 <label>Role</label>
-                                                <input type="text" class="form-control">
+                                                <select class="form-control show-tick" id="employeeRole">
+                                                    <option value="">-- Select --</option>
+                                                    <option value="10">Manager</option>
+                                                    <option value="20">Employee</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-sm-12">
-                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                            <button type="submit" class="btn btn-outline-secondary">Cancel</button>
+                                                <button type="button" ng-click="SetEmployeeFunction('@loginType')" class="btn btn-primary">Save</button>
+                                            <button type="button" class="btn btn-outline-secondary">Cancel</button>
                                         </div>
                                     </div>
                                 </form>
@@ -198,19 +176,18 @@
     <div class="section-body">
         <footer class="footer">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-6 col-sm-12">
-                        <a href="templateshub.net">Templates Hub</a>
-                    </div>
-                    <div class="col-md-6 col-sm-12 text-md-right">
-                        <ul class="list-inline mb-0">
-                            <li class="list-inline-item"><a href="doc/index.html">Documentation</a></li>
-                            <li class="list-inline-item"><a href="javascript:void(0)">FAQ</a></li>
-                            <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-outline-primary btn-sm">Buy Now</a></li>
-                        </ul>
-                    </div>
-                </div>
             </div>
         </footer>
     </div>
 </div>
+}
+else
+{
+    @* @Html.Partial("~/Views/Shared/PartialViewModalsValidation.cshtml") *@
+}
+<script src="~/assets/bundles/lib.vendor.bundle.js"></script>
+<script src="~/lib/angularjs/angular.min.js"></script>
+<script src="~/lib/angularjs/signalr.js"></script>
+<script src="~/contollerscript/Employeecontroller.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/lib/angularjs/signalRService.js"></script>

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "z9UEvdHWnIc=",
+  "dgSpecHash": "SIxR9LwEueM=",
   "success": true,
-  "projectFilePath": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS\\DVMS.csproj",
+  "projectFilePath": "G:\\Support data\\Amaan\\Digital Visitor MS\\copy\\DVMS\\DVMS.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HOME\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\HOME\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
@@ -29,7 +29,6 @@
     "C:\\Users\\HOME\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "C:\\Users\\HOME\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\HOME\\.nuget\\packages\\qrcoder.core\\1.0.3\\qrcoder.core.1.0.3.nupkg.sha512",
-    "C:\\Users\\HOME\\.nuget\\packages\\sixlabors.imagesharp\\3.1.10\\sixlabors.imagesharp.3.1.10.nupkg.sha512",
     "C:\\Users\\HOME\\.nuget\\packages\\system.clientmodel\\1.0.0\\system.clientmodel.1.0.0.nupkg.sha512",
     "C:\\Users\\HOME\\.nuget\\packages\\system.configuration.configurationmanager\\8.0.1\\system.configuration.configurationmanager.8.0.1.nupkg.sha512",
     "C:\\Users\\HOME\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.1\\system.diagnostics.diagnosticsource.6.0.1.nupkg.sha512",
