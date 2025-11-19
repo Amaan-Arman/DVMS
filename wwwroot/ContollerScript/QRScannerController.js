@@ -1,7 +1,7 @@
 ﻿// Define AngularJS module
 var app = angular.module('ScannerApp', []);
 // Define AngularJS controller
-app.controller('QRScannerController', function ($scope, $http, SignalRService) {
+app.controller('QRScannerController', function ($scope, $http, SignalRService, $timeout) {
     SignalRService.init($scope); // Initialize SignalR
 
     localStorage.setItem('URLIndex', '/Admin/')
@@ -55,7 +55,6 @@ app.controller('QRScannerController', function ($scope, $http, SignalRService) {
             $scope.employees = [];
         }
     };
-
 
     // Function to start scanning
     $scope.startScanning = function () {
@@ -192,103 +191,7 @@ app.controller('QRScannerController', function ($scope, $http, SignalRService) {
         //};
     };
 
-    $scope.stopCamera = function () {
-        if (stream) {
-            let tracks = stream.getTracks();
-            tracks.forEach(track => track.stop());
-            document.getElementById('video').srcObject = null;
-            document.getElementById('videoback').srcObject = null;
-        }
-    };
-
-    //$scope.OpenCamerafront = function () {
-    //    $("#modalcamerafront").modal('show');
-
-    //    navigator.mediaDevices.getUserMedia({ video: true })
-    //        .then(function (mediaStream) {
-    //            stream = mediaStream;
-    //            const video = document.getElementById('video');
-    //            video.srcObject = stream;
-
-    //        })
-    //        .catch(function (err) {
-    //            alert("Error accessing webcam: " + err);
-    //        });
-  
-    //};
-
-    $scope.OpenCameraback = function () {
-        $("#modalcameraback").modal('show');
-
-        navigator.mediaDevices.getUserMedia({ video: true })
-            .then(function (mediaStream) {
-                stream = mediaStream;
-                const videoback = document.getElementById('videoback');
-                videoback.srcObject = stream;
-            })
-            .catch(function (err) {
-                alert("Error accessing webcam: " + err);
-            });
-    };
-    $scope.cnicfront = function () {
-        debugger
-        $('.page-loader-wrapper').fadeIn();
-        const video = document.getElementById('video');
-        const canvas = document.getElementById('canvas');
-        const snapshot = document.getElementById('snapshot');
-
-        //const context = canvas.getContext('2d');
-        //// Mirror the image before drawing
-        //context.translate(canvas.width, 0);
-        //context.scale(-1, 1);
-        //context.drawImage(video, 0, 0, canvas.width, canvas.height);
-        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-
-        $("#modalcamerafront").modal('hide');
-        $("#btntakefront").hide();
-        
-        snapshot.style.display = 'block';
-
-        const imageDataF = canvas.toDataURL('image/png');
-        snapshot.src = imageDataF;
-        snapshot.style.display = 'block';
-
-        if (stream) {
-            let tracks = stream.getTracks();
-            tracks.forEach(track => track.stop());
-            document.getElementById('video').srcObject = null;
-        }
-        localStorage.setItem('cnicfront', imageDataF)
-    }
-    $scope.cnicback = function () {
-        debugger
-        const videoback = document.getElementById('videoback');
-        const canvasback = document.getElementById('canvasback');
-        const snapshotback = document.getElementById('snapshotback');
-
-        //const context = canvasback.getContext('2d');
-        //// Mirror the image before drawing
-        //context.translate(canvasback.width, 0);
-        //context.scale(-1, 1);
-        //context.drawImage(videoback, 0, 0, canvasback.width, canvasback.height);
-        canvasback.getContext('2d').drawImage(videoback, 0, 0, canvasback.width, canvasback.height);
-
-        $("#modalcameraback").modal('hide');
-        $("#btntakecnicback").hide();
-
-        snapshotback.style.display = 'block';
-
-        const imageDataB = canvasback.toDataURL('image/png');
-        snapshotback.src = imageDataB;
-        snapshotback.style.display = 'block';
-
-        if (stream) {
-            let tracks = stream.getTracks();
-            tracks.forEach(track => track.stop());
-            document.getElementById('videoback').srcObject = null;
-        }
-        localStorage.setItem('cnicback', imageDataB)
-    }
+    //InsertVisitor
     $scope.InsertVisitor = function () {
         debugger
         var visitorName = $("#visitorName").val();
@@ -301,7 +204,7 @@ app.controller('QRScannerController', function ($scope, $http, SignalRService) {
         if (localStorage.getItem('cnicfront') == "") {
             showMessage("cnic front is required.");
             return;
-        } 
+        }
         //else if (localStorage.getItem('cnicback') == "") {
         //    showMessage("cnic back is required.");
         //    return;
@@ -374,293 +277,417 @@ app.controller('QRScannerController', function ($scope, $http, SignalRService) {
         });
 
     }
-
-
-    let stream = null;
-    let captured = false;
-    let prevGray = null;
-    let stableStart = null;
-
-    let currentDeviceIndex = 0;
-    let videoDevices = [];
-
-    const video = document.getElementById("video");
-    const overlay = document.getElementById("overlay");
-    const ctx = overlay.getContext("2d");
-
-    // Switch camera
-    function switchCamera() {
-        currentDeviceIndex = (currentDeviceIndex + 1) % videoDevices.length;
-        startCamera(videoDevices[currentDeviceIndex].deviceId);
-    }
-
-    $scope.OpenCamerafront = function () {
+    //visitor scanning
+    $scope.OpenCameraFront = async function () {
+        // Show Bootstrap modal
         $("#modalcamerafront").modal('show');
-        //video = document.getElementById('video');
-        //overlay = document.getElementById("overlay");
-        //ctx = overlay.getContext("2d");
-        const switchBtn = document.getElementById('switchCamera');
 
-        navigator.mediaDevices.enumerateDevices()
-            .then(devices => {
-                videoDevices = devices.filter(device => device.kind === 'videoinput');
-                if (videoDevices.length > 0) {
-                    startCamera(videoDevices[currentDeviceIndex].deviceId);
-                }
-                switchBtn.style.display = (videoDevices.length > 1) ? 'block' : 'none';
-            });
+        // Angular-friendly delay instead of setTimeout
+        await $timeout(150);
+
+        // Start camera
+        await $scope.startCamera();
+
+        // When video metadata is loaded
+        video.onloadedmetadata = function () {
+            scanning = true;
+            captureBtn.disabled = false;
+            $scope.startRectDetection();   // restart rectangle detection
+        };
     };
 
-    // =========================
-    // Camera start
-    // =========================
-    function startCamera(deviceId) {
-        if (stream) {
-            stream.getTracks().forEach(track => track.stop()); // stop old stream
-        }
 
-        navigator.mediaDevices.getUserMedia({
-            video: { deviceId: { ideal: deviceId } }
-        })
-            .then(mediaStream => {
-                stream = mediaStream;
-                video.srcObject = stream;
+    // -----------------------------
+    // DOM Elements
+    // -----------------------------
+    const video = document.getElementById('video');
+    const captureBtn = document.getElementById('captureBtn');
+    const previewModal = document.getElementById('previewModal');
+    const previewImg = document.getElementById('previewImg');
+    const retakeBtn = document.getElementById('retakeBtn');
+    const confirmBtn = document.getElementById('confirmBtn');
+    const flashBtn = document.getElementById('flashBtn');
+    const stopBtn = document.getElementById('stopBtn');
+    const procCanvas = document.getElementById('procCanvas');
+    const cropCanvas = document.getElementById('cropCanvas');
+    const ocrText = document.getElementById('ocrText');
 
-                video.onloadedmetadata = () => {
-                    const track = stream.getVideoTracks()[0];
-                    const label = track.label.toLowerCase();
+    // -----------------------------
+    // Variables
+    // -----------------------------
+    let stream = null;
+    let track = null;
+    let scanning = false;
+    let videoDevices = [];
+    let currentCamIndex = 0;
+    let usingFrontCam = false;
+    let cvReady = false;
+    const STABLE_THRESHOLD = 12;
+    let stableCount = 0;
+    let lastFound = false;
 
-                    // flip only if front camera
-                    if (label.includes("front") || label.includes("user") || label.includes("fixed")) {
-                        video.style.transform = "scaleX(-1)";
-                    } else {
-                        video.style.transform = "scaleX(1)";
-                    }
-
-                    video.play();
-                    drawGuide("red");        // initial guide frame
-                };
-
-                video.oncanplay = () => {
-                    requestAnimationFrame(processFrame);
-                };
-            })
-            .catch(err => {
-                console.error("Error starting camera:", err.name, err.message);
-                alert("Error starting camera: " + err.name + " - " + err.message);
-            });
-    }
-
-
-    // =========================
-    // Frame processing loop
-    // =========================
-    function processFrame() {
-        requestAnimationFrame(processFrame);
-
-        if (captured) return;
-        if (video.videoWidth === 0 || video.videoHeight === 0) return;
-
-        try {
-            // ✅ Always use video.videoWidth / video.videoHeight
-            let src = new cv.Mat(video.height, video.width, cv.CV_8UC4);
-            let cap = new cv.VideoCapture(video);
-
-            cap.read(src);
-
-            // ✅ Sync overlay with video
-            if (overlay.width !== video.width || overlay.height !== video.width) {
-                overlay.width = video.width;
-                overlay.height = video.height;
-            }
-
-            // Convert to grayscale
-            let gray = new cv.Mat();
-            cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY);
-
-            // --- Quality & stability checks ---
-            let sharpness = getSharpness(src);
-            let motion = prevGray ? getMotion(prevGray, gray) : 1;
-            let validShape = validateCNICShape(src);
-
-            if (sharpness > 120 && motion < 0.02 && validShape) {
-                if (!stableStart) stableStart = Date.now();
-
-                if (Date.now() - stableStart > 1500) {
-                    drawGuide("green");
-                    showGuideMessage("✅ CNIC detected, capturing...", "lime");
-                    captureCNIC(src);
-                    captured = true;
-                } else {
-                    drawGuide("yellow");
-                    showGuideMessage("⏳ Hold steady, CNIC detected", "orange");
-                }
-            } else {
-                stableStart = null;
-                drawGuide("red");
-
-                if (!validShape) {
-                    showGuideMessage("📷 Place CNIC fully inside the box", "yellow");
-                } else if (sharpness <= 120) {
-                    showGuideMessage("🔍 CNIC blurry, hold steady", "yellow");
-                } else if (motion >= 0.02) {
-                    showGuideMessage("✋ Don’t move CNIC", "yellow");
-                }
-            }
-
-            // Store prevGray
-            if (prevGray) prevGray.delete();
-            prevGray = gray;
-
-            src.delete();
-        } catch (err) {
-            console.error("processFrame error:", err);
-        }
-    }
-
-
-    // =========================
-    // Draw guide frame
-    // =========================
-    function drawGuide(color) {
-        ctx.clearRect(0, 0, overlay.width, overlay.height);
-        ctx.strokeStyle = color;
-        ctx.lineWidth = 3;
-        ctx.setLineDash([10, 6]);
-
-        let { gx, gy, gw, gh } = getGuideBox();
-        ctx.strokeRect(gx, gy, gw, gh);
-    }
-    function getGuideBox() {
-        let gw = overlay.width * 0.65;
-        let gh = overlay.height * 0.42;
-        let gx = Math.max(0, (overlay.width - gw) / 2);
-        let gy = Math.max(0, (overlay.height - gh) / 2);
-        return { gx, gy, gw, gh };
-    }
-
-    // Utility: Sharpness check
-    function getSharpness(mat) {
-        let gray = new cv.Mat();
-        cv.cvtColor(mat, gray, cv.COLOR_RGBA2GRAY, 0);
-        let lap = new cv.Mat();
-        cv.Laplacian(gray, lap, cv.CV_64F);
-        let mean = new cv.Mat(), stddev = new cv.Mat();
-        cv.meanStdDev(lap, mean, stddev);
-        let variance = stddev.doubleAt(0, 0) ** 2;
-        gray.delete(); lap.delete(); mean.delete(); stddev.delete();
-        return variance; // >120 is sharp enough
-    }
-    function showGuideMessage(msg, color = "yellow") {
-        let guideText = document.getElementById("guideText");
-        guideText.innerText = msg;
-        guideText.style.color = color;
-    }
-
-    // Utility: Motion check 
-    function getMotion(prevGray, gray) {
-        let diff = new cv.Mat();
-        cv.absdiff(prevGray, gray, diff);
-        let thresh = new cv.Mat();
-        cv.threshold(diff, thresh, 25, 255, cv.THRESH_BINARY);
-        let nonZero = cv.countNonZero(thresh);
-        let ratio = nonZero / (gray.rows * gray.cols);
-        diff.delete(); thresh.delete();
-        return ratio; // <0.02 means stable 
-    }
-    // =========================
-    // CNIC Shape validation
-    // =========================
-    function validateCNICShape(src) {
-        try {
-            let { gx, gy, gw, gh } = getGuideBox();
-
-            // ✅ Ensure ROI is inside bounds
-            if (gx < 0 || gy < 0 || gx + gw > src.cols || gy + gh > src.rows) {
-                return false;
-            }
-
-            let roi = src.roi(new cv.Rect(gx, gy, gw, gh));
-
-            let gray = new cv.Mat();
-            cv.cvtColor(roi, gray, cv.COLOR_RGBA2GRAY, 0);
-            cv.GaussianBlur(gray, gray, new cv.Size(5, 5), 0);
-
-            let edges = new cv.Mat();
-            cv.Canny(gray, edges, 75, 200);
-
-            let contours = new cv.MatVector();
-            let hierarchy = new cv.Mat();
-            cv.findContours(edges, contours, hierarchy, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE);
-
-            let valid = false;
-            for (let i = 0; i < contours.size(); i++) {
-                let cnt = contours.get(i);
-                let peri = cv.arcLength(cnt, true);
-                let approx = new cv.Mat();
-                cv.approxPolyDP(cnt, approx, 0.02 * peri, true);
-
-                if (approx.rows === 4) { // ✅ Card = rectangle
-                    let area = cv.contourArea(approx);
-                    let rect = cv.boundingRect(approx);
-
-                    // ✅ Area + aspect ratio check
-                    let aspect = rect.width / rect.height;
-                    if (area > 5000 && aspect > 1.3 && aspect < 1.8) {
-                        valid = true;
-                    }
-                }
-
-                approx.delete();
-                cnt.delete();
-            }
-
-            // cleanup
-            gray.delete(); edges.delete(); contours.delete(); hierarchy.delete(); roi.delete();
-            return valid;
-        } catch (err) {
-            console.warn("validateCNICShape error:", err);
-            return false;
-        }
-    }
-
-    // =========================
-    // Capture CNIC
-    // =========================
-    function captureCNIC(src) {
-        let { gx, gy, gw, gh } = getGuideBox();
-
-        // ✅ ROI check
-        if (gx < 0 || gy < 0 || gx + gw > src.cols || gy + gh > src.rows) {
-            console.warn("Capture skipped: ROI out of bounds");
-            return;
-        }
-        let card = src.roi(new cv.Rect(gx, gy, gw, gh));
-
-        let canvas = document.createElement("canvas");
-        canvas.width = gw;
-        canvas.height = gh;
-        cv.imshow(canvas, card);
-
-        let dataUrl = canvas.toDataURL("image/jpeg", 0.9);
-        document.getElementById("snapshot").src = dataUrl;
-
-        console.log("✅ CNIC captured:", dataUrl);
+    // -----------------------------
+    // Confirm → Run OCR
+    // -----------------------------
+    $scope.confirm = async function () {
+        previewModal.style.display = "none";
         $("#modalcamerafront").modal('hide');
 
-        localStorage.setItem('cnicfront', dataUrl);
+        const imgData = cropCanvas.toDataURL("image/png");
 
-        if (stream) {
-            let tracks = stream.getTracks();
-            tracks.forEach(track => track.stop());
-            document.getElementById('video').srcObject = null;
-        }
+        snapshot.src = imgData;
+        snapshot.style.display = 'block';
 
-        card.delete();
-        setTimeout(() => {
-            captured = false;   // restart after 2 seconds
-            stableStart = null; // reset stability timer
-        }, 2000);
+        $scope.stopCamera();
+
+        localStorage.setItem('cnicfront', imgData)
+    };
+
+    // -----------------------------
+    // Initialize
+    // -----------------------------
+    $scope.init = function () {
+        $scope.startDisabled = true;
+        //$scope.captureDisabled = true;
+
+        loadCameraDevices();
+        waitForCvReady();
+    };
+
+
+    // -----------------------------
+    // Load camera list
+    // -----------------------------
+    function loadCameraDevices() {
+        navigator.mediaDevices.enumerateDevices().then(devices => {
+            videoDevices = devices.filter(d => d.kind === "videoinput");
+            if (videoDevices.length === 0) alert("No camera found!");
+        });
     }
 
+    // -----------------------------
+    // Start camera
+    // -----------------------------
+    $scope.startCamera = async function () {
+        try {
+            if (videoDevices.length === 0) loadCameraDevices();
+            debugger
+            const deviceInfo = videoDevices[currentCamIndex];
+            const deviceId = deviceInfo?.deviceId;
+
+            usingFrontCam = deviceInfo?.label.toLowerCase().includes("front") || deviceInfo?.label.toLowerCase().includes("fixed");
+
+            video.style.transform = usingFrontCam ? "scaleX(-1)" : "scaleX(1)";
+
+            stream = await navigator.mediaDevices.getUserMedia({
+                video: deviceId ? { deviceId: { exact: deviceId } } : { facingMode: "environment" }
+            });
+
+            video.srcObject = stream;
+            track = stream.getVideoTracks()[0];
+
+            await new Promise(res => {
+                if (video.readyState >= 2) res();
+                else video.onloadedmetadata = () => res();
+            });
+
+            // Give camera time to auto-focus
+            await new Promise(res => setTimeout(res, 800));
+
+            // Turn on continuous focus if supported
+            try {
+                await track.applyConstraints({ advanced: [{ focusMode: "continuous" }] });
+            } catch (e) {
+                console.error("errror in camera focusMode",e);
+            }
+
+            scanning = true;
+            //$scope.captureDisabled = false;
+            $scope.startDisabled = true;
+
+            startRectDetection();
+        }
+        catch (e) {
+            console.error(e);
+            alert("Camera access denied.");
+        }
+    };
+
+    // -----------------------------
+    // Stop camera
+    // -----------------------------
+    $scope.stopCamera = function () {
+        if (stream) {
+            stream.getTracks().forEach(t => t.stop());
+        }
+        scanning = false;
+        stream = null;
+        track = null;
+        video.pause();
+
+        $scope.startDisabled = false;
+        //$scope.captureDisabled = true;
+    };
+
+    // -----------------------------
+    // Switch camera
+    // -----------------------------
+    $scope.switchCamera = async function () {
+        if (videoDevices.length <= 1) {
+            return alert("No other cameras found.");
+        }
+        $scope.stopCamera();
+
+        currentCamIndex = (currentCamIndex + 1) % videoDevices.length;
+        await $scope.startCamera();
+    };
+
+    // -----------------------------
+    // Toggle Flash
+    // -----------------------------
+    $scope.toggleFlash = async function () {
+        if (!track) return alert("Start camera first");
+
+        const caps = track.getCapabilities();
+        if (!caps.torch) return alert("Flash not supported");
+
+        const torchState = !flashBtn.classList.contains("on");
+        flashBtn.classList.toggle("on");
+
+        await track.applyConstraints({
+            advanced: [{ torch: torchState }]
+        });
+
+        flashBtn.textContent = torchState ? "⚡ On" : "⚡ Flash";
+    };
+
+    // -----------------------------
+    // Manual Capture
+    // -----------------------------
+    $scope.capture = function () {
+        if (!scanning) return;
+        doCapture();
+    };
+
+    // capture on-demand (manual)
+    function doCapture() {
+        const crop = getOverlayCrop();
+
+        cropCanvas.width = crop.w;
+        cropCanvas.height = crop.h;
+
+        const ctx = cropCanvas.getContext("2d");
+
+        ctx.drawImage(
+            video,
+            crop.x, crop.y, crop.w, crop.h,
+            0, 0, crop.w, crop.h
+        );
+
+        previewImg.src = cropCanvas.toDataURL("image/png");
+        previewModal.style.display = "flex";
+
+        scanning = false;
+    }
+
+    // -----------------------------
+    // Preview → Retake
+    // -----------------------------
+    $scope.retake = function () {
+        previewModal.style.display = 'none';
+        scanning = true;
+        if (cvReady) startRectDetection();
+    };
+
+    // -----------------------------
+    // Rectangle Detection Loop
+    // -----------------------------
+    function startRectDetection() {
+        if (!cvReady) return;
+
+        stableCount = 0;
+        lastFound = false;
+
+        (function detectLoop() {
+            if (!scanning) return;
+
+            try {
+                const src = videoFrameToMat();
+                const gray = new cv.Mat();
+                const blurred = new cv.Mat();
+                const edges = new cv.Mat();
+
+                cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY);
+                cv.GaussianBlur(gray, blurred, new cv.Size(5, 5), 0);
+                cv.Canny(blurred, edges, 60, 180);
+
+                const contours = new cv.MatVector();
+                const hierarchy = new cv.Mat();
+                cv.findContours(edges, contours, hierarchy, cv.RETR_LIST, cv.CHAIN_APPROX_SIMPLE);
+
+                let best = null;
+                let maxArea = 0;
+
+                for (let i = 0; i < contours.size(); i++) {
+                    const cnt = contours.get(i);
+                    const peri = cv.arcLength(cnt, true);
+                    const approx = new cv.Mat();
+                    cv.approxPolyDP(cnt, approx, 0.02 * peri, true);
+
+                    const area = cv.contourArea(approx);
+                    if (approx.rows === 4 && area > 15000 && area > maxArea) {
+                        best = approx.clone();
+                        maxArea = area;
+                    }
+                    approx.delete();
+                    cnt.delete();
+                }
+
+                if (best) {
+                    stableCount++;
+                    if (stableCount >= STABLE_THRESHOLD) {
+                        scanning = false;
+                        performPerspectiveCrop(src, best);
+                    }
+                    best.delete();
+                } else {
+                    stableCount = 0;
+                }
+
+                // cleanup
+                src.delete(); gray.delete(); blurred.delete(); edges.delete();
+                contours.delete(); hierarchy.delete();
+            }
+            catch (err) {
+                console.error(err);
+            }
+
+            if (scanning) requestAnimationFrame(detectLoop);
+        })();
+    }
+
+    // -----------------------------
+    // Crop & Show Preview
+    // -----------------------------
+    function performPerspectiveCrop(srcMat, contourMat) {
+        try {
+            const pts = [];
+            for (let i = 0; i < contourMat.rows; i++) {
+                const p = contourMat.intPtr(i, 0);
+                pts.push({ x: p[0], y: p[1] });
+            }
+
+            const ordered = orderPoints(pts);
+
+            const width = Math.max(
+                dist(ordered.tl, ordered.tr),
+                dist(ordered.bl, ordered.br)
+            );
+
+            const height = Math.max(
+                dist(ordered.tr, ordered.br),
+                dist(ordered.tl, ordered.bl)
+            );
+
+            const srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, [
+                ordered.tl.x, ordered.tl.y,
+                ordered.tr.x, ordered.tr.y,
+                ordered.br.x, ordered.br.y,
+                ordered.bl.x, ordered.bl.y
+            ]);
+
+            const dstTri = cv.matFromArray(4, 1, cv.CV_32FC2, [
+                0, 0,
+                width, 0,
+                width, height,
+                0, height
+            ]);
+
+            const M = cv.getPerspectiveTransform(srcTri, dstTri);
+            const dst = new cv.Mat();
+
+            cv.warpPerspective(srcMat, dst, M, new cv.Size(width, height));
+            if (dst.rows > dst.cols) {
+                cv.rotate(dst, dst, cv.ROTATE_90_CLOCKWISE);
+            }
+
+            cv.imshow(cropCanvas, dst);
+            previewImg.src = cropCanvas.toDataURL("image/png");
+            previewModal.style.display = "flex";
+
+            srcTri.delete(); dstTri.delete(); M.delete(); dst.delete();
+        }
+        catch (err) {
+            console.error(err);
+            doCapture();
+        }
+    }
+
+    // -----------------------------
+    // Utility functions
+    // -----------------------------
+    function dist(a, b) {
+        return Math.hypot(a.x - b.x, a.y - b.y);
+    }
+
+    function orderPoints(pts) {
+        const sum = pts.map(p => p.x + p.y);
+        const diff = pts.map(p => p.x - p.y);
+
+        return {
+            tl: pts[sum.indexOf(Math.min(...sum))],
+            br: pts[sum.indexOf(Math.max(...sum))],
+            tr: pts[diff.indexOf(Math.min(...diff))],
+            bl: pts[diff.indexOf(Math.max(...diff))]
+        };
+    }
+
+    function videoFrameToMat() {
+        const crop = getOverlayCrop();
+        procCanvas.width = crop.w;
+        procCanvas.height = crop.h;
+
+        const ctx = procCanvas.getContext("2d");
+
+        ctx.translate(crop.w, 0);
+        ctx.scale(-1, 1);
+        ctx.drawImage(video, crop.x, crop.y, crop.w, crop.h, 0, 0, crop.w, crop.h);
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+
+        return cv.imread(procCanvas);
+    }
+
+    function getOverlayCrop() {
+        const box = document.getElementById("overlayBox").getBoundingClientRect();
+        const rect = video.getBoundingClientRect();
+
+        const scaleX = video.videoWidth / rect.width;
+        const scaleY = video.videoHeight / rect.height;
+
+        return {
+            x: (box.left - rect.left) * scaleX,
+            y: (box.top - rect.top) * scaleY,
+            w: box.width * scaleX,
+            h: box.height * scaleY
+        };
+    }
+
+    // -----------------------------
+    // Wait for OpenCV
+    // -----------------------------
+    function waitForCvReady() {
+        if (typeof cv === "undefined") {
+            return setTimeout(waitForCvReady, 200);
+        }
+
+        cv.onRuntimeInitialized = function () {
+            cvReady = true;
+            $scope.startDisabled = true;
+            $scope.$apply();
+            console.log("OpenCV Ready");
+        };
+    }
+
+    // Init
+    $scope.init();
 });

@@ -45,7 +45,10 @@
         public string Gender { get; set; }
         public int Company_id { get; set; }
         public string Company_name{ get; set; }
-        public string Floor_no{ get; set; }
+
+        public int Floor_no { get; set; }
+        public string num { get; set; }
+
         public int Department_id { get; set; }
         public string Department_name { get; set; }
         public int Employee_id { get; set; }

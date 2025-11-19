@@ -22,7 +22,7 @@
                                     var loginType = Context.Session.GetString("login_type");
                                 }
 
-                                @if (string.Equals(loginType, "Manager", StringComparison.OrdinalIgnoreCase))
+                                @if (string.Equals(loginType, "Manager", StringComparison.OrdinalIgnoreCase) || string.Equals(loginType, "superadmin", StringComparison.OrdinalIgnoreCase))
                                 {
                                   <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#Roles_Permissions">Roles & Permissions</a></li>
                                 }

@@ -9,6 +9,7 @@ using System;
 using System.Drawing;
 using System.Reflection;
 using static QRCoder.Core.PayloadGenerator;
+using static System.Net.Mime.MediaTypeNames;
 using ImageFormat = System.Drawing.Imaging.ImageFormat;
 
 namespace DVMS.Controllers
@@ -195,8 +196,7 @@ namespace DVMS.Controllers
                 {
                     return Unauthorized("Session expired. Please login again.");
                 }
-                string folderPath = "~/assets/images/companieslogo";
-
+                string folderPath ="wwwroot/assets/images/companieslogo";
                 // Create directory if it doesn't exist
                 if (!Directory.Exists(folderPath))
                 {
@@ -298,7 +298,7 @@ namespace DVMS.Controllers
                 {
                     if (HttpContext.Session.GetString("Login") != null)
                     {
-                        if (HttpContext.Session.GetString("login_type") == "manager")
+                        if (HttpContext.Session.GetString("login_type") == "manager" || HttpContext.Session.GetString("login_type") == "superadmin")
                         {
                             FloorWiseData = Cc.SelectAdmin("FloorWiseData", "0", "0000-00-00", "0000-00-00", "0000-00-00").ToList();
                         }
@@ -339,7 +339,7 @@ namespace DVMS.Controllers
                         }
                         else
                         {
-                            var Userid = HttpContext.Session.GetInt32("user_credential_id").ToString();
+                            var Userid = HttpContext.Session.GetInt32("company").ToString();
                             GetTopvisitor = Cc.SelectAdmin("Topvisitor", Userid, "0000-00-00", "0000-00-00", "0000-00-00").ToList();
                         }
                     }
@@ -374,7 +374,7 @@ namespace DVMS.Controllers
                         }
                         else
                         {
-                            var Userid = HttpContext.Session.GetInt32("user_credential_id").ToString();
+                            var Userid = HttpContext.Session.GetInt32("company").ToString();
                             GetTopguest = Cc.SelectAdmin("Topguest", Userid, "0000-00-00", "0000-00-00", "0000-00-00").ToList();
                         }
                     }
@@ -536,8 +536,16 @@ namespace DVMS.Controllers
             {
                 if (Cc.DatabaseConnectionCheck() == true)
                 {
-                    var ID = HttpContext.Session.GetInt32("company").ToString().Trim();
-                    GetEmployeeList = Cc.SelectEmployee("EmployeeList", ID, "0000-00-00", "0000-00-00", "0000-00-00").ToList();
+                    //GetEmployeeList = Cc.SelectEmployee("EmployeeList", ID, "0000-00-00", "0000-00-00", "0000-00-00").ToList();
+                    if (HttpContext.Session.GetString("login_type") == "superadmin")
+                    {
+                        GetEmployeeList = Cc.SelectEmployee("EmployeeList", "0", "0000-00-00", "0000-00-00", "0000-00-00").ToList();
+                    }
+                    else
+                    {
+                        var ID = HttpContext.Session.GetInt32("company").ToString().Trim();
+                        GetEmployeeList = Cc.SelectEmployee("EmployeeList", ID, "0000-00-00", "0000-00-00", "0000-00-00").ToList();
+                    }
                 }
                 else
                 {
@@ -606,10 +614,13 @@ namespace DVMS.Controllers
                 if (Cc.DatabaseConnectionCheck() == true)
                 {
                     string CompanyId = HttpContext.Session.GetInt32("company").ToString();
-
                     if (HttpContext.Session.GetString("login_type") == "superadmin")
                     {
-                        GuestCheckInList = Cc.SelectAdmin("GuestCheckInList", "0", "0000-00-00", "0000-00-00", "0000-00-00").ToList();
+                    GuestCheckInList = Cc.SelectAdmin("GuestCheckInList", "0", "0000-00-00", "0000-00-00", "0000-00-00").ToList();
+                        foreach(var item in GuestCheckInList)
+                        {
+                            item.num = Cc.Suffix(item.Floor_no);
+                        }
                     }
                     else
                     {
@@ -1115,7 +1126,7 @@ namespace DVMS.Controllers
                     graphics.DrawImage(logo, new System.Drawing.Rectangle(50, 20, 451, 94));
 
                     // Draw text
-                    var font = new Font("Arial", 18);
+                    var font = new System.Drawing.Font("Arial", 18);
                     graphics.DrawString($"Guest : {request.GuestFullName}", font, Brushes.Black, new System.Drawing.PointF(50, 150));
                     graphics.DrawString($"Host : {userName}", font, Brushes.Black, new System.Drawing.PointF(50, 190));
                     graphics.DrawString($"Visit Time : {request.VisitDate:dd MMM yyyy} {timeFormatted}", font, Brushes.Black, new System.Drawing.PointF(50, 230));
@@ -1125,7 +1136,7 @@ namespace DVMS.Controllers
                     graphics.DrawImage(qrImage, new System.Drawing.Rectangle(150, 320, 300, 300));
 
                     // Draw Invitation ID at bottom center
-                    var idFont = new Font("Arial", 14, System.Drawing.FontStyle.Bold);
+                    var idFont = new System.Drawing.Font("Arial", 14, System.Drawing.FontStyle.Bold);
                     var idText = $"Invitation ID: {invitationId}";
                     System.Drawing.SizeF idSize = graphics.MeasureString(idText, idFont);
                     float idX = (invitationImage.Width - idSize.Width) / 2;
@@ -1256,7 +1267,6 @@ namespace DVMS.Controllers
         [HttpPost]
         public IActionResult VisitorInsertion([FromBody] Admin request)
         {
-
             if (request == null)
                 return BadRequest("Invalid data received.");
             
@@ -1269,17 +1279,11 @@ namespace DVMS.Controllers
                 string Status = "";
                 string Result = "";
 
-                var CNICfront = request.CNICfront.Replace("data:image/jpeg;base64,", "");
+                var CNICfront = request.CNICfront.Replace("data:image/png;base64,", "");
                 var bytesF = Convert.FromBase64String(CNICfront);
                 var fileNameF = $"IDCard_{DateTime.Now:yyyyMMddHHmmss}.png";
                 var pathF = Path.Combine("wwwroot/assets/images/VisitorIDs", fileNameF);
                 System.IO.File.WriteAllBytes(pathF, bytesF);
-
-                //var CNICback = request.CNICback.Replace("data:image/png;base64,", "");
-                //var bytesB = Convert.FromBase64String(CNICback);
-                //var fileNameB = $"IDCard_{DateTime.Now:yyyyMMddHHmmss}.png";
-                //var pathB = Path.Combine("wwwroot/assets/images/VisitorIDs", fileNameB);
-                //System.IO.File.WriteAllBytes(pathB, bytesB);
 
                 string field = "Name , Gender , CNICFront,  Company, Department, Employee,visitorPurpose,Employee_id";
                 string values = $"'{request.VisitorFullName}', '{request.Gender}', '{fileNameF}', '{request.Company_name}', '{request.Department_name}', '{request.Employee_name}', '{request.VisitPurpose}', '{request.Employee_id}'";

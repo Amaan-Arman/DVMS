@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "G:\\Support data\\Amaan\\Digital Visitor MS\\copy\\DVMS\\DVMS.csproj": {}
+    "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS copy\\DVMS\\DVMS.csproj": {}
   },
   "projects": {
-    "G:\\Support data\\Amaan\\Digital Visitor MS\\copy\\DVMS\\DVMS.csproj": {
+    "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS copy\\DVMS\\DVMS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Support data\\Amaan\\Digital Visitor MS\\copy\\DVMS\\DVMS.csproj",
+        "projectUniqueName": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS copy\\DVMS\\DVMS.csproj",
         "projectName": "DVMS",
-        "projectPath": "G:\\Support data\\Amaan\\Digital Visitor MS\\copy\\DVMS\\DVMS.csproj",
+        "projectPath": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS copy\\DVMS\\DVMS.csproj",
         "packagesPath": "C:\\Users\\HOME\\.nuget\\packages\\",
-        "outputPath": "G:\\Support data\\Amaan\\Digital Visitor MS\\copy\\DVMS\\obj\\",
+        "outputPath": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS copy\\DVMS\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

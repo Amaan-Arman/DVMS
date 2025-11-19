@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SIxR9LwEueM=",
+  "dgSpecHash": "+L9b1MEt0T4=",
   "success": true,
-  "projectFilePath": "G:\\Support data\\Amaan\\Digital Visitor MS\\copy\\DVMS\\DVMS.csproj",
+  "projectFilePath": "G:\\Support data\\Amaan\\Digital Visitor MS\\DVMS copy\\DVMS\\DVMS.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HOME\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\HOME\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

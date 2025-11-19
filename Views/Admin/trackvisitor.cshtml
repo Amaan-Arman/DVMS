@@ -52,12 +52,24 @@
                     <div class="row clearfix">
                         <div class="col-12">
                             <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title"> Check-IN list</h3>
+                                        <div class="card-options ">
+                                            <a title="Print" tabindex="-1" href="#" onclick="PrintforReport('Product List', '#VCheckInTableID')"><em class="fa fa-xl fa-print">&nbsp;</em></a>
+                                            <a title="Excel" tabindex="-1" href="#" id="VCheckINExcelID" onclick="javascript: ExcelFuncntion('#VCheckInTableID', '#VCheckINExcelID', 'Visitor Check-In Sheet.xls');"><em class="fa fa-xl fa-file-excel-o ">&nbsp;</em></a>
+                                            @*@if((int)TempData["Product_can_print"] == 1)
+                                        {
+                                        }
+                                        @if ((int)TempData["Product_can_report"] == 1)
+                                        {
+                                        } *@
+                                        </div>
+                                    </div>
                                 <div class="table-responsive">
-                                    <table class="table table-hover table-striped table-vcenter mb-0 text-nowrap">
+                                        <table id="VCheckInTableID" class="table table-hover table-striped table-vcenter mb-0 text-nowrap">
                                         <thead>
                                             <tr>
-                                                <th colspan="5">Check-IN Detail</th>
-                                                <th colspan="3">Activity</th>
+                                                <th colspan="9">Visitor Check-IN list</th>
                                             </tr>
                                             <tr>
                                                 <th class="w30">&nbsp;</th>
@@ -131,19 +143,31 @@
                     <div class="row clearfix">
                         <div class="col-12">
                             <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title"> Check-Out list</h3>
+                                        <div class="card-options ">
+                                            <a title="Print" tabindex="-1" href="#" onclick="PrintforReport('Product List', '#VCheckOutTableID')"><em class="fa fa-xl fa-print">&nbsp;</em></a>
+                                            <a title="Excel" tabindex="-1" href="#" id="VCheckOUTExcelID" onclick="javascript: ExcelFuncntion('#VCheckOutTableID', '#VCheckOUTExcelID', 'visitor Check-Out Sheet.xls');"><em class="fa fa-xl fa-file-excel-o ">&nbsp;</em></a>
+                                            @*@if((int)TempData["Product_can_print"] == 1)
+                                        {
+                                        }
+                                        @if ((int)TempData["Product_can_report"] == 1)
+                                        {
+                                        } *@
+                                        </div>
+                                    </div>
                                 <div class="table-responsive">
-                                    <table class="table table-hover table-striped table-vcenter mb-0 text-nowrap">
+                                        <table id="VCheckOutTableID" class="table table-hover table-striped table-vcenter mb-0 text-nowrap">
                                         <thead>
                                             <tr>
-                                                <th colspan="5">Check-OUT Detail</th>
-                                                <th colspan="3">Activity</th>
+                                                <th colspan="9">Visitor Check-OUT list</th>
                                             </tr>
                                             <tr>
                                                 <th class="w30">&nbsp;</th>
                                                 <th>Visitor ID</th>
                                                 <th>Visitor Name</th>
                                                 <th>Host Name</th>
-                                                <th>Floor No</th>
+                                                @* <th>Floor No</th> *@
                                                 <th>Company </th>
                                                 <th>VisitPurpose </th>
                                                 <th>Check-In</th>
@@ -161,7 +185,7 @@
                                                 <td><a href="#">{{c.visitorId}}</a></td>
                                                 <td><span>{{c.visitorFullName}}</span></td>
                                                 <td><span>{{c.hostName}}</span></td>
-                                                <td><span>{{c.floor_no}}</span></td>
+                                                @* <td><span>{{c.floor_no}}</span></td> *@
                                                 <td><span>{{c.company_name}}</span></td>
                                                 <td>{{c.visitPurpose}}</td>
                                                 <td>{{c.gusetCheckInTime}}</td>
@@ -193,3 +217,5 @@ else
 <script src="~/contollerscript/TrackvisitorContrller.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="~/lib/angularjs/signalRService.js"></script>
+<script src="~/contollerscript/printandexcel.js"></script>
+<script src="~/printjquery/printthis.js"></script>

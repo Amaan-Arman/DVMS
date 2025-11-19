@@ -177,7 +177,7 @@ namespace DVMS.Models
                                 p.VisitorId = ToInt32(rdr[0].ToString()); //(int) rdr[0];
                                 p.VisitorFullName = ToString(rdr[1].ToString());
                                 p.HostName = ToString(rdr[2].ToString());
-                                p.Floor_no = ToString(rdr[3].ToString());
+                                p.Floor_no = ToInt32(rdr[3].ToString());
                                 p.Company_name = ToString(rdr[4].ToString());
                                 p.VisitPurpose = ToString(rdr[5].ToString());
                                 p.GusetCheckInTime = ToString(rdr[6].ToString());
@@ -197,7 +197,7 @@ namespace DVMS.Models
                                 p.GuestFullName = ToString(rdr[2].ToString());
                                 p.HostName = ToString(rdr[3].ToString());
                                 p.Company_name = ToString(rdr[4].ToString());
-                                p.Floor_no = ToString(rdr[5].ToString());
+                                p.Floor_no = ToInt32(rdr[5].ToString());
                                 p.GusetCheckInTime = ToString(rdr[6].ToString());
                                 p.GusetCheckOutTime = ToString(rdr[7].ToString());
 
@@ -210,10 +210,10 @@ namespace DVMS.Models
                             while (rdr.Read())
                             {
                                 Admin p = new Admin();
-                                p.CompanyId = ToInt32(rdr[0].ToString());
-                                p.Floor_no = ToString(rdr[1].ToString());
-                                p.GusetCheckIn = ToInt32(rdr[2].ToString());
-                                p.VisitorCheckIn = ToInt32(rdr[3].ToString());
+                                //p.CompanyId = ToInt32(rdr[0].ToString());
+                                p.Floor_no = ToInt32(rdr[0].ToString());
+                                p.GusetCheckIn = ToInt32(rdr[1].ToString());
+                                p.VisitorCheckIn = ToInt32(rdr[2].ToString());
 
                                 lst.Add(p);
                             }
@@ -229,7 +229,7 @@ namespace DVMS.Models
                                 p.GuestFullName = ToString(rdr[2].ToString());
                                 p.HostName = ToString(rdr[3].ToString());
                                 p.Company_name = ToString(rdr[4].ToString());
-                                p.Floor_no = ToString(rdr[5].ToString());
+                                p.Floor_no = ToInt32(rdr[5].ToString());
                                 p.GusetCheckInTime = ToString(rdr[6].ToString());
                                 p.GusetCheckOutTime = ToString(rdr[7].ToString());
 
@@ -247,7 +247,7 @@ namespace DVMS.Models
                                 p.GuestFullName = ToString(rdr[2].ToString());
                                 p.HostName = ToString(rdr[3].ToString());
                                 p.Company_name = ToString(rdr[4].ToString());
-                                p.Floor_no = ToString(rdr[5].ToString());
+                                p.Floor_no = ToInt32(rdr[5].ToString());
                                 p.GusetCheckInTime = ToString(rdr[6].ToString());
                                 p.GusetCheckOutTime = ToString(rdr[7].ToString());
 
@@ -266,7 +266,7 @@ namespace DVMS.Models
                                 p.GuestFullName = ToString(rdr[2].ToString());
                                 p.HostName = ToString(rdr[3].ToString());
                                 p.Company_name = ToString(rdr[4].ToString());
-                                p.Floor_no = ToString(rdr[5].ToString());
+                                p.Floor_no = ToInt32(rdr[5].ToString());
                                 p.GusetCheckInTime = ToString(rdr[6].ToString());
                                 p.GusetCheckOutTime = ToString(rdr[7].ToString());
 
@@ -284,7 +284,7 @@ namespace DVMS.Models
                                 p.GuestFullName = ToString(rdr[2].ToString());
                                 p.HostName = ToString(rdr[3].ToString());
                                 p.Company_name = ToString(rdr[4].ToString());
-                                p.Floor_no = ToString(rdr[5].ToString());
+                                p.Floor_no = ToInt32(rdr[5].ToString());
                                 p.GusetCheckInTime = ToString(rdr[6].ToString());
                                 p.GusetCheckOutTime = ToString(rdr[7].ToString());
 
@@ -302,7 +302,7 @@ namespace DVMS.Models
                                 p.VisitorId = ToInt32(rdr[0].ToString()); //(int) rdr[0];
                                 p.VisitorFullName = ToString(rdr[1].ToString());
                                 p.HostName = ToString(rdr[2].ToString());
-                                p.Floor_no = ToString(rdr[3].ToString());
+                                p.Floor_no = ToInt32(rdr[3].ToString());
                                 p.Company_name = ToString(rdr[4].ToString());
                                 p.VisitPurpose = ToString(rdr[5].ToString());
                                 p.GusetCheckInTime = ToString(rdr[6].ToString());
@@ -320,7 +320,7 @@ namespace DVMS.Models
                                 p.VisitorId = ToInt32(rdr[0].ToString()); //(int) rdr[0];
                                 p.VisitorFullName = ToString(rdr[1].ToString());
                                 p.HostName = ToString(rdr[2].ToString());
-                                p.Floor_no = ToString(rdr[3].ToString());
+                                p.Floor_no = ToInt32(rdr[3].ToString());
                                 p.Company_name = ToString(rdr[4].ToString());
                                 p.VisitPurpose = ToString(rdr[5].ToString());
                                 p.GusetCheckInTime = ToString(rdr[6].ToString());
@@ -339,7 +339,7 @@ namespace DVMS.Models
                                 p.VisitorId = ToInt32(rdr[0].ToString()); //(int) rdr[0];
                                 p.VisitorFullName = ToString(rdr[1].ToString());
                                 p.HostName = ToString(rdr[2].ToString());
-                                p.Floor_no = ToString(rdr[3].ToString());
+                                p.Floor_no = ToInt32(rdr[3].ToString());
                                 p.Company_name = ToString(rdr[4].ToString());
                                 p.VisitPurpose = ToString(rdr[5].ToString());
                                 p.GusetCheckInTime = ToString(rdr[6].ToString());
@@ -357,7 +357,7 @@ namespace DVMS.Models
                                 p.VisitorId = ToInt32(rdr[0].ToString()); //(int) rdr[0];
                                 p.VisitorFullName = ToString(rdr[1].ToString());
                                 p.HostName = ToString(rdr[2].ToString());
-                                p.Floor_no = ToString(rdr[3].ToString());
+                                p.Floor_no = ToInt32(rdr[3].ToString());
                                 p.Company_name = ToString(rdr[4].ToString());
                                 p.VisitPurpose = ToString(rdr[5].ToString());
                                 p.GusetCheckInTime = ToString(rdr[6].ToString());
@@ -524,6 +524,7 @@ namespace DVMS.Models
                                 p.role = ToString(rdr[4].ToString());
                                 p.department = ToString(rdr[5].ToString());
                                 p.date_time = ToString(rdr[6].ToString());
+                                p.companyName = ToString(rdr[7].ToString());
 
                                 lst.Add(p);
                             }
@@ -1195,6 +1196,7 @@ namespace DVMS.Models
                     return "th";
             }
         }
+       
         public string FirstCharToUpper(string value)
         {
             char[] array = value.ToCharArray();
